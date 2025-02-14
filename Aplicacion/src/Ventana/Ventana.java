@@ -30,7 +30,7 @@ public class Ventana extends JFrame {
 		JLabel etiqueta1 = new JLabel("Bienvenido"); //Creacion de una etiqueta junto con su contenido
 		etiqueta1.setSize(160, 40);
 		etiqueta1.setLocation(160, 10); //Posicion donde se imprime la etiqueta
-		etiqueta1.setBackground(Color.ORANGE); //Color de fondo para la etiqueta
+		etiqueta1.setBackground(Color.YELLOW); //Color de fondo para la etiqueta
 		etiqueta1.setOpaque(true);
 		etiqueta1.setFont(etiquetas); //Tipo y tamaño del texto
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
