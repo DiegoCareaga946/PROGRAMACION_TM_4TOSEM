@@ -1,5 +1,6 @@
 package Ventana;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -13,11 +14,16 @@ public class Ventana extends JFrame {
 		Font etiquetas = new Font("Andale Mono", Font.BOLD, 22);
 		
 		this.setTitle("Acceso"); //Agrega titulo
+		
 		this.setVisible(true); //Hace visible la ventana
 		this.setSize(500, 500); //Ajuste del tamaño de la ventana
-		this.setResizable(false); //Permite ajustar el tamaño de la ventana
+		this.setResizable(true); //Permite ajustar el tamaño de la ventana
+		
 		this.setLayout(null); //Elimina el formato predeterminado de la ventana
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Ejecuta el cierre o finaliza el programa cuando se cierra la ventana
+		
+		this.setMaximumSize(new Dimension(600, 600));
+		this.setMinimumSize(new Dimension(400, 400));
 		this.setLocationRelativeTo(null);
 		
 		JPanel Login = new JPanel();
@@ -27,8 +33,8 @@ public class Ventana extends JFrame {
 		Login.setOpaque(true);
 		this.add(Login);
 		
-		JLabel etiqueta1 = new JLabel("Bienvenido"); //Creacion de una etiqueta junto con su contenido
-		etiqueta1.setSize(160, 40);
+		JLabel etiqueta1 = new JLabel("INICIO DE SESIÓN"); //Creacion de una etiqueta junto con su contenido
+		etiqueta1.setSize(300, 200);
 		etiqueta1.setLocation(160, 10); //Posicion donde se imprime la etiqueta
 		etiqueta1.setBackground(Color.ORANGE); //Color de fondo para la etiqueta
 		etiqueta1.setOpaque(true);
