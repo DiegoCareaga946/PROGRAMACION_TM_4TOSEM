@@ -1,27 +1,37 @@
 package Ventana;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.font.TextAttribute;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 public class Ventana extends JFrame {
 	JFrame Ventana = new JFrame();
+	
+	public static Border createLineBorder(Color blue) {
+		return null;
+	}
 	
 	public Ventana (String title) {
 		Font etiquetas = new Font("Andale Mono", Font.BOLD, 22);
@@ -33,16 +43,18 @@ public class Ventana extends JFrame {
 		this.setTitle("Acceso"); //Agrega titulo
 		
 		this.setVisible(true); //Hace visible la ventana
-		this.setSize(700, 700); //Ajuste del tamaño de la ventana
+		this.setSize(1400, 700); //Ajuste del tamaño de la ventana
 		this.setResizable(true); //Permite ajustar el tamaño de la ventana
 		
 		this.setLayout(null); //Elimina el formato predeterminado de la ventana
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Ejecuta el cierre o finaliza el programa cuando se cierra la ventana
 		
-		this.setMaximumSize(new Dimension(800, 800));
+		this.setMaximumSize(new Dimension(1500, 1500));
 		this.setMinimumSize(new Dimension(400, 400));
 		this.setLocationRelativeTo(null);
 		
+		
+		/*
 		JPanel Login = new JPanel();
 		Login.setLocation(0, 0);
 		Login.setSize(700, 700);
@@ -125,6 +137,145 @@ public class Ventana extends JFrame {
 		botonAcceder.setFont(etiquetas);
 		Login.add(botonAcceder);
 		Login.repaint();		
+		*/
 		
+		JPanel Registro = new JPanel();
+		Registro.setLocation(700, 0);
+		Registro.setSize(700, 700);
+		Registro.setBackground(Color.getHSBColor(180, 143, 171)); //Color de fondo para la etiqueta
+		Registro.setOpaque(true);
+		Registro.setLayout(null);
+		this.add(Registro);
+		this.repaint();
+		
+		JLabel etiqueta1 = new JLabel("REGISTRO"); //Creacion de una etiqueta junto con su contenido
+		etiqueta1.setSize(200, 50);
+		etiqueta1.setLocation(250, 10); //Posicion donde se imprime la etiqueta
+		etiqueta1.setBackground(Color.getHSBColor(3, 24, 86)); //Color de fondo para la etiqueta
+		etiqueta1.setOpaque(true);
+		etiqueta1.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta1); //Agrega la etiqueta en la ventana
+		
+		JLabel etiqueta2 = new JLabel("NOMBRE DE USUARIO: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta2.setSize(300, 50);
+		etiqueta2.setLocation(200, 70); //Hace lo que SetSize y SetLocation
+		etiqueta2.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta2.setOpaque(true);
+		etiqueta2.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta2.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta2); //Agrega la etiqueta en la ventana
+		
+		JTextField campoRegistro = new JTextField();
+		campoRegistro.setSize(400, 35);
+		campoRegistro.setLocation(150, 140);
+		campoRegistro.setBackground(Color.LIGHT_GRAY);
+		campoRegistro.setOpaque(true);
+		Registro.add(campoRegistro);
+		
+		JLabel etiqueta3 = new JLabel("BIO: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta3.setSize(100, 40);
+		etiqueta3.setLocation(300, 190); //Hace lo que SetSize y SetLocation
+		etiqueta3.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta3.setOpaque(true);
+		etiqueta3.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta3.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta3); //Agrega la etiqueta en la ventana
+		
+		JTextArea campoBiografia = new JTextArea();
+		campoBiografia.setSize(500, 100);
+		campoBiografia.setLocation(100, 250);
+		campoBiografia.setBackground(Color.LIGHT_GRAY);
+		campoBiografia.setOpaque(true);
+		Registro.add(campoBiografia);
+		
+		JLabel etiqueta5 = new JLabel("PREFERENCIAS: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta5.setSize(300, 50);
+		etiqueta5.setLocation(200, 370); //Hace lo que SetSize y SetLocation
+		etiqueta5.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta5.setOpaque(true);
+		etiqueta5.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta5.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta5); //Agrega la etiqueta en la ventana
+		
+		Border border = BorderFactory.createLineBorder(Color.RED, 10);
+		ButtonGroup grupo1 = new ButtonGroup();
+		grupo1.setSelected(null, rootPaneCheckingEnabled);
+		ButtonGroup grupoTerminosYCondiciones = new ButtonGroup();
+		
+		
+		JRadioButton boton1 = new JRadioButton("Dulce");
+		boton1.setSize(100, 20);
+		boton1.setLocation(75, 440);
+		boton1.setBackground(Color.getHSBColor(335, 32, 82));
+		boton1.setOpaque(true);
+		boton1.setBorder(border);
+		boton1.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+		grupo1.add(boton1);
+		Registro.add(boton1);
+		
+		JRadioButton boton2 = new JRadioButton("Salado");
+		boton2.setSize(100, 20);
+		boton2.setLocation(225, 440);
+		boton2.setBackground(Color.getHSBColor(335, 32, 82));
+		boton2.setOpaque(true);
+		boton2.setBorder(border);
+		grupo1.add(boton2);
+		Registro.add(boton2);
+		
+		JRadioButton boton3 = new JRadioButton("Saluble");
+		boton3.setSize(100, 20);
+		boton3.setLocation(375, 440);
+		boton3.setBackground(Color.getHSBColor(335, 32, 82));
+		boton3.setOpaque(true);
+		boton3.setBorder(border);
+		grupo1.add(boton3);
+		Registro.add(boton3);
+		
+		JLabel etiqueta6 = new JLabel("TERMINOS Y CONDICIONES: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta6.setSize(400, 50);
+		etiqueta6.setLocation(150, 480); //Hace lo que SetSize y SetLocation
+		etiqueta6.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta6.setOpaque(true);
+		etiqueta6.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta6.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta6); //Agrega la etiqueta en la ventana
+		
+		JRadioButton boton4 = new JRadioButton("ACEPTO LOS TERMINOS Y CONDICIONES");
+		boton4.setSize(250, 20);
+		boton4.setLocation(50, 550);
+		boton4.setBackground(Color.getHSBColor(335, 32, 82));
+		boton4.setOpaque(true);
+		boton4.setBorder(border);
+		boton4.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+		grupo1.add(boton4);
+		Registro.add(boton4);
+		
+		JRadioButton boton5 = new JRadioButton("NO ACEPTO LOS TERMINOS Y CONDICIONES");
+		boton5.setSize(250, 20);
+		boton5.setLocation(350, 550);
+		boton5.setBackground(Color.getHSBColor(335, 32, 82));
+		boton5.setOpaque(true);
+		boton5.setBorder(border);
+		grupo1.add(boton5);
+		Registro.add(boton5);
+		
+		String[] colonias = {"San Carlos III", "San Carlos IV", "El Pedregal", "Santa Fe"};
+		JComboBox<String> comboBox = new JComboBox<String>(colonias);
+		comboBox.setSize(200, 30);
+		comboBox.setLocation(100, 600);
+		Registro.add(comboBox);
+		
+		JButton boton6 = new JButton("CREAR CUENTA");
+		boton6.setSize(250, 50);
+		boton6.setLocation(350, 600);
+		boton6.setBackground(Color.getHSBColor(335, 32, 82));
+		boton6.setOpaque(true);
+		boton6.setBorder(border);
+		boton6.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+		grupo1.add(boton6);
+		Registro.add(boton6);
+		
+		this.repaint();
 	}
 }
