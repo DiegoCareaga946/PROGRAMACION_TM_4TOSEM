@@ -36,7 +36,7 @@ public class Ventana extends JFrame {
 	}
 	
 	public Ventana (String title){
-		Font etiquetas = new Font("Andale Mono", Font.BOLD, 30);
+		Font etiquetas = new Font("Andale Mono", Font.BOLD, 28);
 		Font pequeño = new Font("Andale Mono", Font.ROMAN_BASELINE, 14);
 		Font subrayado = new Font("Andale Mono", Font.ROMAN_BASELINE, 14);
 		Map attributes = subrayado.getAttributes();
@@ -79,8 +79,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(campoIngresoDatos);
 		
 		JButton etiqueta1 = new JButton("3"); //Creacion de una etiqueta junto con su contenido
-		etiqueta1.setSize(100, 100);
-		etiqueta1.setLocation(275, 505); //Posicion donde se imprime la etiqueta
+		etiqueta1.setSize(80, 80);
+		etiqueta1.setLocation(210, 430); //Posicion donde se imprime la etiqueta
 		etiqueta1.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta1.setOpaque(true);
 		etiqueta1.setFont(etiquetas); //Tipo y tamaño del texto
@@ -88,8 +88,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta1); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta3 = new JButton("2"); //Creacion de una etiqueta junto con su contenido
-		etiqueta3.setSize(100, 100);
-		etiqueta3.setLocation(150, 505); //Posicion donde se imprime la etiqueta
+		etiqueta3.setSize(80, 80);
+		etiqueta3.setLocation(110, 430); //Posicion donde se imprime la etiqueta
 		etiqueta3.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta3.setOpaque(true);
 		etiqueta3.setFont(etiquetas); //Tipo y tamaño del texto
@@ -97,8 +97,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta3); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta4 = new JButton("1"); //Creacion de una etiqueta junto con su contenido
-		etiqueta4.setSize(100, 100);
-		etiqueta4.setLocation(25, 505); //Posicion donde se imprime la etiqueta
+		etiqueta4.setSize(80, 80);
+		etiqueta4.setLocation(10, 430); //Posicion donde se imprime la etiqueta
 		etiqueta4.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta4.setOpaque(true);
 		etiqueta4.setFont(etiquetas); //Tipo y tamaño del texto
@@ -106,8 +106,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta4);
 		
 		JButton etiqueta5 = new JButton("6"); //Creacion de una etiqueta junto con su contenido
-		etiqueta5.setSize(100, 100);
-		etiqueta5.setLocation(275, 390); //Posicion donde se imprime la etiqueta
+		etiqueta5.setSize(80, 80);
+		etiqueta5.setLocation(210, 325); //Posicion donde se imprime la etiqueta
 		etiqueta5.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta5.setOpaque(true);
 		etiqueta5.setFont(etiquetas); //Tipo y tamaño del texto
@@ -115,8 +115,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta5); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta6 = new JButton("5"); //Creacion de una etiqueta junto con su contenido
-		etiqueta6.setSize(100, 100);
-		etiqueta6.setLocation(150, 390); //Posicion donde se imprime la etiqueta
+		etiqueta6.setSize(80, 80);
+		etiqueta6.setLocation(110, 325); //Posicion donde se imprime la etiqueta
 		etiqueta6.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta6.setOpaque(true);
 		etiqueta6.setFont(etiquetas); //Tipo y tamaño del texto
@@ -124,8 +124,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta6); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta7 = new JButton("4"); //Creacion de una etiqueta junto con su contenido
-		etiqueta7.setSize(100, 100);
-		etiqueta7.setLocation(25, 390); //Posicion donde se imprime la etiqueta
+		etiqueta7.setSize(80, 80);
+		etiqueta7.setLocation(10, 325); //Posicion donde se imprime la etiqueta
 		etiqueta7.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta7.setOpaque(true);
 		etiqueta7.setFont(etiquetas); //Tipo y tamaño del texto
@@ -133,8 +133,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta7);
 		
 		JButton etiqueta8 = new JButton("9"); //Creacion de una etiqueta junto con su contenido
-		etiqueta8.setSize(100, 100);
-		etiqueta8.setLocation(275, 275); //Posicion donde se imprime la etiqueta
+		etiqueta8.setSize(80, 80);
+		etiqueta8.setLocation(210, 220); //Posicion donde se imprime la etiqueta
 		etiqueta8.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta8.setOpaque(true);
 		etiqueta8.setFont(etiquetas); //Tipo y tamaño del texto
@@ -142,8 +142,8 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta8); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta9 = new JButton("8"); //Creacion de una etiqueta junto con su contenido
-		etiqueta9.setSize(100, 100);
-		etiqueta9.setLocation(150, 275); //Posicion donde se imprime la etiqueta
+		etiqueta9.setSize(80, 80);
+		etiqueta9.setLocation(110, 220); //Posicion donde se imprime la etiqueta
 		etiqueta9.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta9.setOpaque(true);
 		etiqueta9.setFont(etiquetas); //Tipo y tamaño del texto
@@ -151,16 +151,18 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta9); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta10 = new JButton("7"); //Creacion de una etiqueta junto con su contenido
-		etiqueta10.setSize(100, 100);
-		etiqueta10.setLocation(25, 275); //Posicion donde se imprime la etiqueta
+		etiqueta10.setSize(80, 80);
+		etiqueta10.setLocation(10, 220); //Posicion donde se imprime la etiqueta
 		etiqueta10.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta10.setOpaque(true);
 		etiqueta10.setFont(etiquetas); //Tipo y tamaño del texto
 		etiqueta10.setHorizontalAlignment(JLabel.CENTER);
+		fondoCalculadora.add(etiqueta10); //Agrega la etiqueta en la ventana
+		fondoCalculadora.add(etiqueta10); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta13 = new JButton("0"); //Creacion de una etiqueta junto con su contenido
-		etiqueta13.setSize(150, 25);
-		etiqueta13.setLocation(25, 620); //Posicion donde se imprime la etiqueta
+		etiqueta13.setSize(180,80);
+		etiqueta13.setLocation(10, 535); //Posicion donde se imprime la etiqueta
 		etiqueta13.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta13.setOpaque(true);
 		etiqueta13.setFont(etiquetas); //Tipo y tamaño del texto
@@ -168,58 +170,76 @@ public class Ventana extends JFrame {
 		fondoCalculadora.add(etiqueta13); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta14 = new JButton("."); //Creacion de una etiqueta junto con su contenido
-		etiqueta14.setSize(150, 25);
-		etiqueta14.setLocation(200, 620); //Posicion donde se imprime la etiqueta
+		etiqueta14.setSize(80,80);
+		etiqueta14.setLocation(210, 535); //Posicion donde se imprime la etiqueta
 		etiqueta14.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta14.setOpaque(true);
 		etiqueta14.setFont(etiquetas); //Tipo y tamaño del texto
 		etiqueta14.setHorizontalAlignment(JLabel.CENTER);
 		fondoCalculadora.add(etiqueta14); //Agrega la etiqueta en la ventana
 		
-		fondoCalculadora.add(etiqueta10); //Agrega la etiqueta en la ventana
+		JButton signoSuma = new JButton("x"); //Creacion de una etiqueta junto con su contenido
+		signoSuma.setSize(80, 80);
+		signoSuma.setLocation(330, 325); //Posicion donde se imprime la etiqueta
+		signoSuma.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
+		signoSuma.setOpaque(true);
+		signoSuma.setFont(etiquetas); //Tipo y tamaño del texto
+		signoSuma.setHorizontalAlignment(JLabel.CENTER);
+		fondoCalculadora.add(signoSuma); //Agrega la etiqueta en la ventana
 		
+		JButton signoResta = new JButton("-"); //Creacion de una etiqueta junto con su contenido
+		signoResta.setSize(80, 80);
+		signoResta.setLocation(330, 430); //Posicion donde se imprime la etiqueta
+		signoResta.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
+		signoResta.setOpaque(true);
+		signoResta.setFont(etiquetas); //Tipo y tamaño del texto
+		signoResta.setHorizontalAlignment(JLabel.CENTER);
+		fondoCalculadora.add(signoResta); //Agrega la etiqueta en la ventana
+		
+		JButton signoMultiplicacion = new JButton("+"); //Creacion de una etiqueta junto con su contenido
+		signoMultiplicacion.setSize(80, 80);
+		signoMultiplicacion.setLocation(330, 535); //Posicion donde se imprime la etiqueta
+		signoMultiplicacion.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
+		signoMultiplicacion.setOpaque(true);
+		signoMultiplicacion.setFont(etiquetas); //Tipo y tamaño del texto
+		signoMultiplicacion.setHorizontalAlignment(JLabel.CENTER);
+		fondoCalculadora.add(signoMultiplicacion); //Agrega la etiqueta en la ventana
+		
+		JButton signoDivision = new JButton("÷"); //Creacion de una etiqueta junto con su contenido
+		signoDivision.setSize(80, 80);
+		signoDivision.setLocation(330, 220); //Posicion donde se imprime la etiqueta
+		signoDivision.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
+		signoDivision.setOpaque(true);
+		signoDivision.setFont(etiquetas); //Tipo y tamaño del texto
+		signoDivision.setHorizontalAlignment(JLabel.CENTER);
+		fondoCalculadora.add(signoDivision); //Agrega la etiqueta en la ventana
+
 		JButton etiqueta2 = new JButton("="); //Creacion de una etiqueta junto con su contenido
-		etiqueta2.setSize(100, 300);
-		etiqueta2.setLocation(400, 350); //Posicion donde se imprime la etiqueta
+		etiqueta2.setSize(80, 185);
+		etiqueta2.setLocation(420, 430); //Posicion donde se imprime la etiqueta
 		etiqueta2.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta2.setOpaque(true);
 		etiqueta2.setFont(etiquetas); //Tipo y tamaño del texto
 		etiqueta2.setHorizontalAlignment(JLabel.CENTER);
 		fondoCalculadora.add(etiqueta2); //Agrega la etiqueta en la ventana
 		
-		JButton etiqueta11 = new JButton("C"); //Creacion de una etiqueta junto con su contenido
-		etiqueta11.setSize(150, 50);
-		etiqueta11.setLocation(200, 210); //Posicion donde se imprime la etiqueta
-		etiqueta11.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
-		etiqueta11.setOpaque(true);
-		etiqueta11.setFont(etiquetas); //Tipo y tamaño del texto
-		etiqueta11.setHorizontalAlignment(JLabel.CENTER);
-		fondoCalculadora.add(etiqueta11); //Agrega la etiqueta en la ventana
+		JButton borrarTodo = new JButton("C"); //Creacion de una etiqueta junto con su contenido
+		borrarTodo.setSize(80,80);
+		borrarTodo.setLocation(420, 325); //Posicion donde se imprime la etiqueta
+		borrarTodo.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
+		borrarTodo.setOpaque(true);
+		borrarTodo.setFont(etiquetas); //Tipo y tamaño del texto
+		borrarTodo.setHorizontalAlignment(JLabel.CENTER);
+		fondoCalculadora.add(borrarTodo); //Agrega la etiqueta en la ventana
 		
 		JButton etiqueta12 = new JButton("CE"); //Creacion de una etiqueta junto con su contenido
-		etiqueta12.setSize(150, 50);
-		etiqueta12.setLocation(25, 210); //Posicion donde se imprime la etiqueta
+		etiqueta12.setSize(80,80);
+		etiqueta12.setLocation(420, 220); //Posicion donde se imprime la etiqueta
 		etiqueta12.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
 		etiqueta12.setOpaque(true);
 		etiqueta12.setFont(etiquetas); //Tipo y tamaño del texto
 		etiqueta12.setHorizontalAlignment(JLabel.CENTER);
 		fondoCalculadora.add(etiqueta12); //Agrega la etiqueta en la ventana
-		
-		String[] opciones = {"Suma", "Resta", "Multiplicación", "Division"};
-		JComboBox<String> operacion = new JComboBox(opciones);
-		operacion.setSize(100, 50);
-		operacion.setLocation(400, 250);
-		operacion.setOpaque(true);
-		fondoCalculadora.add(operacion);
-		
-		JLabel etiqueta15 = new JLabel("Operaciones"); //Creacion de una etiqueta junto con su contenido
-		etiqueta15.setSize(100, 30);
-		etiqueta15.setLocation(400, 215); //Posicion donde se imprime la etiqueta
-		etiqueta15.setBackground(Color.LIGHT_GRAY); //Color de fondo para la etiqueta
-		etiqueta15.setOpaque(true);
-		etiqueta15.setFont(pequeño); //Tipo y tamaño del texto
-		etiqueta15.setHorizontalAlignment(JLabel.CENTER);
-		fondoCalculadora.add(etiqueta15); //Agrega la etiqueta en la ventana
 		
 		this.repaint();
 	}
