@@ -74,6 +74,62 @@ public class Ventana extends JFrame {
 		this.setMinimumSize(new Dimension(400, 400));//Limite de redimencion (minima)
 		this.setLocationRelativeTo(null);
 		
+		GridLayout botonesCal = new GridLayout(6,5);
+		JPanel calculadora = new JPanel();
+		calculadora.setLayout(botonesCal);
+		
+		JLabel pantalla = new JLabel();		
+		pantalla.setBounds(0,0,600,270);
+		pantalla.setBackground(Color.white);
+		pantalla.setOpaque(true);
+		this.add(pantalla);
+		
+		JLabel historial = new JLabel();		
+		pantalla.setBounds(0,0,600,270);
+		pantalla.setBackground(Color.white);
+		pantalla.setOpaque(true);
+		this.add(pantalla);
+		
+		calculadora.setBounds(0, 270, 600, 400);
+		calculadora.setOpaque(true);
+		
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("CE"));
+		calculadora.add(new JButton("C"));
+		
+		calculadora.add(new JButton("7")); 
+		calculadora.add(new JButton("8")); 
+		calculadora.add(new JButton("9"));
+		calculadora.add(new JButton("*"));
+		
+		calculadora.add(new JButton("4"));
+		calculadora.add(new JButton("5"));
+		calculadora.add(new JButton("6"));
+		calculadora.add(new JButton("+"));
+		
+		calculadora.add(new JButton("1"));
+		calculadora.add(new JButton("2"));
+		calculadora.add(new JButton("3"));
+		calculadora.add(new JButton("-"));
+		
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("0"));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("/"));
+		
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("="));
+
+
+		
+		this.add(calculadora);
+		this.repaint();
+		
+		
+		/*
 		JMenuBar barra = new JMenuBar(); // Barra de menus
 		
 		JMenu menu1 = new JMenu("Archivo");
@@ -232,6 +288,7 @@ public class Ventana extends JFrame {
 		etiquetaFondo.setIcon(new ImageIcon(fondo.getImage().getScaledInstance(1400, 800, Image.SCALE_SMOOTH)));
 		Login.add(etiquetaFondo);
 		Login.repaint();
+		*/
 		/*
 
 		JPanel Registro = new JPanel();
