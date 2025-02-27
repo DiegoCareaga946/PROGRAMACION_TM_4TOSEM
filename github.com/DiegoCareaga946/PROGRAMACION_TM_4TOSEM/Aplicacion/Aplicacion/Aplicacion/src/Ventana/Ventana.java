@@ -55,6 +55,7 @@ public class Ventana extends JFrame {
 		
 		//Tipos de fuentes de texto
 		Font etiquetas = new Font("Andale Mono", Font.BOLD, 22);
+		Font etiquetasCursiva = new Font("Andale Mono", Font.ITALIC, 22);
 		Font pequeño = new Font("Andale Mono", Font.ROMAN_BASELINE, 14);
 		Font subtitulo = new Font("Arial", Font.ITALIC, 14);
 		Font normal = new Font("Arial", Font.BOLD, 16);
@@ -74,6 +75,102 @@ public class Ventana extends JFrame {
 		this.setMinimumSize(new Dimension(400, 400));//Limite de redimencion (minima)
 		this.setLocationRelativeTo(null);
 		
+		BorderLayout organizarFondo = new BorderLayout();
+		
+		
+		JLabel interes = new JLabel("Interés");
+		interes.setFont(etiquetasCursiva);
+		interes.setForeground(Color.red);
+
+		JPanel FondoIzquierda = new JPanel();
+		FondoIzquierda.setBounds(0,0,700,600);
+		FondoIzquierda.setOpaque(true);
+		FondoIzquierda.setBackground(new Color(228, 251, 87));
+		FondoIzquierda.setLayout(organizarFondo);
+		FondoIzquierda.add(interes,BorderLayout.NORTH);
+		this.add(FondoIzquierda);
+		
+		JLabel cuadro1_1 = new JLabel();
+		cuadro1_1.setLayout(organizarFondo);
+		cuadro1_1.setBorder(BorderFactory.createTitledBorder(new EstiloBordeRedondeado(true), "Calcular Interes", 0, 0, normal));
+		FondoIzquierda.add(cuadro1_1, BorderLayout.CENTER);
+		
+		JPanel cuadro1 = new JPanel();
+		cuadro1.setOpaque(true);
+		cuadro1.setBackground(new Color(146, 251, 87));
+		cuadro1.setLayout(new GridLayout(4,2, 50, 50));
+		cuadro1.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
+		JLabel capital_tag = new JLabel("Capital");
+		capital_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+		
+		JTextField campoCapital = new JTextField("1500");
+		campoCapital.setFont(normal);
+		
+		JLabel tiempo_tag = new JLabel("Tiempo");
+		tiempo_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+		
+		JTextField campoTiempo = new JTextField("2");
+		campoTiempo.setFont(normal);
+
+		JLabel tasaInteres_tag = new JLabel("Tasa Interes");
+		tasaInteres_tag.setBorder(BorderFactory.createEmptyBorder(0, 85, 0, 0));
+
+		JTextField campoTasaInteres = new JTextField("0.1");
+		campoTasaInteres.setFont(normal);
+
+		EstiloBoton calcular = new EstiloBoton("Calcular");
+		EstiloBoton cancelar = new EstiloBoton("Cancelar");
+		
+		cuadro1.add(capital_tag);
+		cuadro1.add(campoCapital);
+		cuadro1.add(tiempo_tag);
+		cuadro1.add(campoTiempo);
+		cuadro1.add(tasaInteres_tag);
+		cuadro1.add(campoTasaInteres);
+		cuadro1.add(calcular);
+		cuadro1.add(cancelar);
+		
+		cuadro1_1.add(cuadro1);	
+		FondoIzquierda.add(cuadro1, organizarFondo.CENTER);
+		
+		capital_tag.setFont(etiquetas);
+		tiempo_tag.setFont(etiquetas);
+		tasaInteres_tag.setFont(etiquetas);
+	
+		JPanel cuadro2 = new JPanel();
+		cuadro2.setOpaque(true);
+		cuadro2.setBackground(new Color(251,92,87));
+		cuadro2.setLayout(new GridLayout(2,2,20,20));
+		cuadro2.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+		JLabel interes_tag = new JLabel("Ínteres");
+		interes_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+
+		JTextField CampoInteres = new JTextField("315.00002");
+		CampoInteres.setFont(normal);
+
+		JLabel monto_tag = new JLabel("Monto");
+		monto_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+
+		JTextField CampoMonto = new JTextField("1815.00000");
+		CampoMonto.setFont(normal);
+
+		cuadro2.add(interes_tag);
+		cuadro2.add(CampoInteres);
+		cuadro2.add(monto_tag);
+		cuadro2.add(CampoMonto);
+		cuadro1_1.add(cuadro2, BorderLayout.SOUTH);
+		
+		monto_tag.setFont(etiquetas);
+		interes_tag.setFont(etiquetas);
+		
+		cuadro2.repaint();		
+		this.validate();
+		this.repaint();
+		
+		
+		/*
 		GridLayout botonesCal = new GridLayout(6,5);
 		JPanel calculadora = new JPanel();
 		calculadora.setLayout(botonesCal);
@@ -127,7 +224,7 @@ public class Ventana extends JFrame {
 		
 		this.add(calculadora);
 		this.repaint();
-		
+		*/
 		
 		/*
 		JMenuBar barra = new JMenuBar(); // Barra de menus

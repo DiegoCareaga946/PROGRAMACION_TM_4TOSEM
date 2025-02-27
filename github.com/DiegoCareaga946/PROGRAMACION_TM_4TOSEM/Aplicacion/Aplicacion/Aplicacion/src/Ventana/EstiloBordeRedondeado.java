@@ -10,8 +10,8 @@ public class EstiloBordeRedondeado implements Border
 {
 	protected int m_w = 6;
 	protected int m_h = 6;
-	protected Color m_topColor = Color.white;
-	protected Color m_bottomColor = Color.gray;
+	protected Color m_topColor = Color.black;
+	protected Color m_bottomColor = Color.black;
 	protected boolean roundc = false; // Do we want rounded corners on the border?
 
 

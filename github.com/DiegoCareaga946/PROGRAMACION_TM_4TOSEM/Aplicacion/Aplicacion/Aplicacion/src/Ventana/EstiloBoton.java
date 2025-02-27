@@ -59,9 +59,10 @@ public class EstiloBoton extends JButton{
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
-	
+	Font textoBoton = new Font("Arial", Font.CENTER_BASELINE, 20);
 	public EstiloBoton(String string) {
 		setText(string);
+		setFont(textoBoton);
 		// Init Color
 		setContentAreaFilled(false);
 		setBorderPainted(false);
