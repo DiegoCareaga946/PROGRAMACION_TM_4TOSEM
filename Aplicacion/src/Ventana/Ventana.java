@@ -10,9 +10,11 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
+import java.util.List;
 import java.util.Map;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -20,13 +22,18 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -41,15 +48,20 @@ import javax.swing.border.TitledBorder;
 import Campos.Password;
 import Campos.Text;
 import Texto.TextRound;
+import image.imageIcon;
+
 
 public class Ventana extends JFrame {
 	JFrame Ventana = new JFrame();
 	
-	
 	public Ventana (String title) {
+		
+		ImageIcon icono =  new ImageIcon(Ventana.class.getResource("/iconoVentana.png"));
+		this.setIconImage(icono.getImage());
 		
 		//Tipos de fuentes de texto
 		Font etiquetas = new Font("Andale Mono", Font.BOLD, 22);
+		Font etiquetasCursiva = new Font("Andale Mono", Font.ITALIC, 22);
 		Font pequeño = new Font("Andale Mono", Font.ROMAN_BASELINE, 14);
 		Font subtitulo = new Font("Arial", Font.ITALIC, 14);
 		Font normal = new Font("Arial", Font.BOLD, 16);
@@ -69,6 +81,190 @@ public class Ventana extends JFrame {
 		this.setMinimumSize(new Dimension(400, 400));//Limite de redimencion (minima)
 		this.setLocationRelativeTo(null);
 		
+		this.repaint();
+		
+		/*
+		BorderLayout organizarFondo = new BorderLayout();
+		
+		JLabel interes = new JLabel("Interés");
+		interes.setFont(etiquetasCursiva);
+		interes.setForeground(Color.red);
+
+		JPanel FondoIzquierda = new JPanel();
+		FondoIzquierda.setBounds(0,0,700,600);
+		FondoIzquierda.setOpaque(true);
+		FondoIzquierda.setBackground(new Color(228, 251, 87));
+		FondoIzquierda.setLayout(organizarFondo);
+		FondoIzquierda.add(interes,BorderLayout.NORTH);
+		this.add(FondoIzquierda);
+		
+		JLabel cuadro1_1 = new JLabel();
+		cuadro1_1.setLayout(organizarFondo);
+		cuadro1_1.setBorder(BorderFactory.createTitledBorder(new EstiloBordeRedondeado(true), "Calcular Interes", 0, 0, normal));
+		FondoIzquierda.add(cuadro1_1, BorderLayout.CENTER);
+		
+		JPanel cuadro1 = new JPanel();
+		cuadro1.setOpaque(true);
+		cuadro1.setBackground(new Color(146, 251, 87));
+		cuadro1.setLayout(new GridLayout(4,2, 50, 50));
+		cuadro1.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+		
+		JLabel capital_tag = new JLabel("Capital");
+		capital_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+		
+		JTextField campoCapital = new JTextField("1500");
+		campoCapital.setFont(normal);
+		
+		JLabel tiempo_tag = new JLabel("Tiempo");
+		tiempo_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+		
+		JTextField campoTiempo = new JTextField("2");
+		campoTiempo.setFont(normal);
+
+		JLabel tasaInteres_tag = new JLabel("Tasa Interes");
+		tasaInteres_tag.setBorder(BorderFactory.createEmptyBorder(0, 85, 0, 0));
+
+		JTextField campoTasaInteres = new JTextField("0.1");
+		campoTasaInteres.setFont(normal);
+
+		EstiloBoton calcular = new EstiloBoton("Calcular");
+		EstiloBoton cancelar = new EstiloBoton("Cancelar");
+		
+		cuadro1.add(capital_tag);
+		cuadro1.add(campoCapital);
+		cuadro1.add(tiempo_tag);
+		cuadro1.add(campoTiempo);
+		cuadro1.add(tasaInteres_tag);
+		cuadro1.add(campoTasaInteres);
+		cuadro1.add(calcular);
+		cuadro1.add(cancelar);
+		
+		cuadro1_1.add(cuadro1);	
+		FondoIzquierda.add(cuadro1, organizarFondo.CENTER);
+		
+		capital_tag.setFont(etiquetas);
+		tiempo_tag.setFont(etiquetas);
+		tasaInteres_tag.setFont(etiquetas);
+	
+		JPanel cuadro2 = new JPanel();
+		cuadro2.setOpaque(true);
+		cuadro2.setBackground(new Color(251,92,87));
+		cuadro2.setLayout(new GridLayout(2,2,20,20));
+		cuadro2.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+		JLabel interes_tag = new JLabel("Ínteres");
+		interes_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+
+		JTextField CampoInteres = new JTextField("315.00002");
+		CampoInteres.setFont(normal);
+
+		JLabel monto_tag = new JLabel("Monto");
+		monto_tag.setBorder(BorderFactory.createEmptyBorder(0, 110, 0, 0));
+
+		JTextField CampoMonto = new JTextField("1815.00000");
+		CampoMonto.setFont(normal);
+
+		cuadro2.add(interes_tag);
+		cuadro2.add(CampoInteres);
+		cuadro2.add(monto_tag);
+		cuadro2.add(CampoMonto);
+		cuadro1_1.add(cuadro2, BorderLayout.SOUTH);
+		
+		monto_tag.setFont(etiquetas);
+		interes_tag.setFont(etiquetas);
+		
+		cuadro2.repaint();		
+		this.validate();
+		this.repaint();
+		*/
+		
+		/*
+		GridLayout botonesCal = new GridLayout(6,5);
+		JPanel calculadora = new JPanel();
+		calculadora.setLayout(botonesCal);
+		
+		JLabel pantalla = new JLabel();		
+		pantalla.setBounds(0,0,600,270);
+		pantalla.setBackground(Color.white);
+		pantalla.setOpaque(true);
+		this.add(pantalla);
+		
+		JLabel historial = new JLabel();		
+		pantalla.setBounds(0,0,600,270);
+		pantalla.setBackground(Color.white);
+		pantalla.setOpaque(true);
+		this.add(pantalla);
+		
+		calculadora.setBounds(0, 270, 600, 400);
+		calculadora.setOpaque(true);
+		
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("CE"));
+		calculadora.add(new JButton("C"));
+		
+		calculadora.add(new JButton("7")); 
+		calculadora.add(new JButton("8")); 
+		calculadora.add(new JButton("9"));
+		calculadora.add(new JButton("*"));
+		
+		calculadora.add(new JButton("4"));
+		calculadora.add(new JButton("5"));
+		calculadora.add(new JButton("6"));
+		calculadora.add(new JButton("+"));
+		
+		calculadora.add(new JButton("1"));
+		calculadora.add(new JButton("2"));
+		calculadora.add(new JButton("3"));
+		calculadora.add(new JButton("-"));
+		
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("0"));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("/"));
+		
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton(""));
+		calculadora.add(new JButton("="));
+
+
+		
+		this.add(calculadora);
+		this.repaint();
+		*/
+		
+		/*
+		JMenuBar barra = new JMenuBar(); // Barra de menus
+		
+		JMenu menu1 = new JMenu("Archivo");
+		JMenu menu2 = new JMenu("Ayuda");
+		
+		
+		JMenuItem op_open = new JMenuItem("Nuevo");
+		JMenuItem op_save = new JMenuItem("Guardar");
+		JMenuItem op_load = new JMenuItem("Cargar");
+		JMenuItem op_close = new JMenuItem("Cerrar");
+		
+		menu1.add(op_open);
+		menu1.add(op_save);
+		menu1.add(op_load);
+		menu1.add(op_close);
+
+		JRadioButtonMenuItem op_help = new JRadioButtonMenuItem("Ayuda");
+		JCheckBoxMenuItem op_support = new JCheckBoxMenuItem("Soporte");
+		
+		menu2.add(op_help);
+		menu2.add(op_support);
+		
+		barra.add(menu1);
+		barra.add(menu2);
+
+		this.setJMenuBar(barra);
+		this.repaint();
+		this.revalidate();
+		
+		
 		JPanel Login = new JPanel();
 		Login.setLocation(0, 0); //Establece el sitio de creación
 		Login.setSize(1400, 700); //Ajusta el tamaño que ocupara el panel
@@ -82,7 +278,7 @@ public class Ventana extends JFrame {
 		etiqueta.setRoundTopRight(50);
 		etiqueta.setRoundBottomRight(50);
 		etiqueta.setSize(250, 50);
-		etiqueta.setLocation(570, 90); //Hace lo que SetSize y SetLocation
+		etiqueta.setLocation(570, 70); //Hace lo que SetSize y SetLocation
 		etiqueta.setBackground(Color.getHSBColor(223, 163, 131)); //Color de fondo para la etiqueta
 		etiqueta.setFont(etiquetas); //Seleccion de tipo y tamaño del texto
 		etiqueta.setHorizontalAlignment(JLabel.CENTER); //Acomodado del texto en el espacio
@@ -90,7 +286,7 @@ public class Ventana extends JFrame {
 		
 		JLabel etiqueta2 = new JLabel("Correo Electrónico: ");
 		etiqueta2.setSize(250, 50);
-		etiqueta2.setLocation(477, 180);
+		etiqueta2.setLocation(477, 160);
 		etiqueta2.setFont(normal); 
 		etiqueta2.setHorizontalAlignment(JLabel.CENTER);
 		Login.add(etiqueta2);
@@ -101,7 +297,7 @@ public class Ventana extends JFrame {
 		campoCorreoElectronico.setRoundTopRight(25); //Redondeo de la esquina superior derecha
 		campoCorreoElectronico.setRoundBottomRight(25); //Redondeo de la esquina inferior derecha
 		campoCorreoElectronico.setSize(350, 50);
-		campoCorreoElectronico.setLocation(525, 220);
+		campoCorreoElectronico.setLocation(525, 200);
 		campoCorreoElectronico.setBackground(Color.white);
 		campoCorreoElectronico.setBorder(BorderFactory.createEmptyBorder()); //Cambia el formato del borde en la figura.
 		campoCorreoElectronico.setFont(normal);
@@ -109,13 +305,13 @@ public class Ventana extends JFrame {
 		
 		ImageIcon imagenIcono = new ImageIcon("IconoUsuario.png"); //Agrega una imagen
 		JLabel etiquetaIcono = new JLabel(imagenIcono); //Se adjunta la imagen a una etiqueta para su ajuste
-		etiquetaIcono.setBounds(0, 0, 1000, 490);
+		etiquetaIcono.setBounds(0, 0, 1000, 450);
 		etiquetaIcono.setIcon(new ImageIcon(imagenIcono.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH))); //Permite el control del tamaño y reajuste de la imagen
 		Login.add(etiquetaIcono);
 		
 		JLabel etiqueta3 = new JLabel("Contraseña: ");
 		etiqueta3.setSize(200, 50);
-		etiqueta3.setLocation(477, 300);
+		etiqueta3.setLocation(477, 280);
 		etiqueta3.setFont(normal);
 		etiqueta3.setHorizontalAlignment(JLabel.CENTER);
 		Login.add(etiqueta3);
@@ -126,7 +322,7 @@ public class Ventana extends JFrame {
 		campoContrasena.setRoundTopRight(25);
 		campoContrasena.setRoundBottomRight(25);
 		campoContrasena.setSize(350, 50);
-		campoContrasena.setLocation(525, 340);
+		campoContrasena.setLocation(525, 320);
 		campoContrasena.setBackground(Color.white);
 		campoContrasena.setBorder(BorderFactory.createEmptyBorder());
 		campoContrasena.setFont(normal);
@@ -134,27 +330,27 @@ public class Ventana extends JFrame {
 		
 		ImageIcon imagenContrasena = new ImageIcon("contrasena.png");
 		JLabel etiquetaContrasena = new JLabel(imagenContrasena); 
-		etiquetaContrasena.setBounds(0, 0, 1000, 725);
+		etiquetaContrasena.setBounds(0, 0, 1000, 690);
 		etiquetaContrasena.setIcon(new ImageIcon(imagenContrasena.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 		Login.add(etiquetaContrasena);
 		
 		JCheckBox boton = new JCheckBox(); // Creacion de boton de selección
 		boton.setSize(20, 20);
-		boton.setLocation(510, 440);
+		boton.setLocation(510, 410);
 		boton.setBackground(Color.white);
 		boton.setVisible(true); //Permite la visibilidad del componente
 		Login.add(boton);
 		
 		JLabel etiqueta4 = new JLabel("Recordarme");
 		etiqueta4.setSize(125, 40);
-		etiqueta4.setLocation(490, 430);
+		etiqueta4.setLocation(490, 400);
 		etiqueta4.setHorizontalAlignment(JLabel.RIGHT);
 		etiqueta4.setFont(pequeño);
 		Login.add(etiqueta4);
 		
 		JLabel etiqueta5 = new JLabel("¿No recuerdas la contraseña?");
 		etiqueta5.setSize(230, 40);
-		etiqueta5.setLocation(660, 430);
+		etiqueta5.setLocation(660, 400);
 		etiqueta5.setHorizontalAlignment(JLabel.RIGHT);
         etiqueta5.setFont(subtitulo.deriveFont(attributes));
         etiqueta5.setForeground(Color.BLUE);
@@ -163,12 +359,24 @@ public class Ventana extends JFrame {
 		
 		EstiloBoton botonAcceder = new EstiloBoton("INICIAR SESION"); //Creacion de un boton con texto
 		botonAcceder.setSize(300, 70);
-		botonAcceder.setLocation(550, 500);
+		botonAcceder.setLocation(550, 465);
 		botonAcceder.setHorizontalAlignment(JLabel.CENTER);
 		botonAcceder.setForeground(Color.BLACK); //Permite cambiar el color de la letra
 		botonAcceder.setBackground(Color.WHITE);
 		botonAcceder.setFont(etiquetas);
 		Login.add(botonAcceder);
+		
+		EstiloBoton botonRegistrarse = new EstiloBoton("REGISTRARSE"); //Creacion de un boton con texto
+		botonRegistrarse.setSize(200, 40);
+		botonRegistrarse.setLocation(600, 550);
+		botonRegistrarse.setHorizontalAlignment(JLabel.CENTER);
+		botonRegistrarse.setForeground(Color.BLACK); //Permite cambiar el color de la letra
+		botonRegistrarse.setBorderColor(Color.getHSBColor(217, 123, 231));
+		botonRegistrarse.setColorClick(Color.getHSBColor(220, 170, 100));
+		botonRegistrarse.setColorOver(Color.getHSBColor(220, 160, 80));
+		botonRegistrarse.setBackground(Color.WHITE);
+		botonRegistrarse.setFont(etiquetas);
+		Login.add(botonRegistrarse);
 		
 		PanelRound fondoPorEncima = new PanelRound(); //Inserta un panel vacio
 		fondoPorEncima.setBounds(450, 30, 500, 600);
@@ -185,6 +393,7 @@ public class Ventana extends JFrame {
 		etiquetaFondo.setIcon(new ImageIcon(fondo.getImage().getScaledInstance(1400, 800, Image.SCALE_SMOOTH)));
 		Login.add(etiquetaFondo);
 		Login.repaint();
+		*/
 		/*
 
 		JPanel Registro = new JPanel();
