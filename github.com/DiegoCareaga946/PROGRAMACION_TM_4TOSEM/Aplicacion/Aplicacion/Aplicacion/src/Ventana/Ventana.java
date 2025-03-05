@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
@@ -75,8 +76,8 @@ public class Ventana extends JFrame {
 		this.setMinimumSize(new Dimension(400, 400));//Limite de redimencion (minima)
 		this.setLocationRelativeTo(null);
 		
+		/*
 		BorderLayout organizarFondo = new BorderLayout();
-		
 		
 		JLabel interes = new JLabel("Interés");
 		interes.setFont(etiquetasCursiva);
@@ -168,7 +169,7 @@ public class Ventana extends JFrame {
 		cuadro2.repaint();		
 		this.validate();
 		this.repaint();
-		
+		*/
 		
 		/*
 		GridLayout botonesCal = new GridLayout(6,5);
