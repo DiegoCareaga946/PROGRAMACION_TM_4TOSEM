@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
@@ -43,6 +45,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.Document;
 
 import Campos.Password;
 import Campos.Text;
@@ -387,7 +390,89 @@ public class Ventana extends JFrame {
 		Login.add(etiquetaFondo);
 		Login.repaint();
 		*/
-		/*
+		JPanel Login = new JPanel();
+		Login.setLocation(0, 0);
+		Login.setSize(700, 700);
+		Login.setBackground(Color.getHSBColor(209, 143, 171)); //Color de fondo para la etiqueta
+		Login.setOpaque(true);
+		Login.setLayout(null);
+		this.add(Login);
+		this.repaint();
+		
+		JLabel etiqueta1 = new JLabel("ACCEDER"); //Creacion de una etiqueta junto con su contenido
+		etiqueta1.setSize(200, 50);
+		etiqueta1.setLocation(250, 10); //Posicion donde se imprime la etiqueta
+		etiqueta1.setBackground(Color.getHSBColor(3, 24, 86)); //Color de fondo para la etiqueta
+		etiqueta1.setOpaque(true);
+		etiqueta1.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		Login.add(etiqueta1); //Agrega la etiqueta en la ventana
+		
+		JLabel etiqueta2 = new JLabel("Correo Electrónico: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta2.setSize(250, 50);
+		etiqueta2.setLocation(20, 100); //Hace lo que SetSize y SetLocation
+		etiqueta2.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta2.setOpaque(true);
+		etiqueta2.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta2.setHorizontalAlignment(JLabel.LEFT);
+		Login.add(etiqueta2); //Agrega la etiqueta en la ventana
+		
+		JLabel etiqueta3 = new JLabel("Contraseña: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta3.setSize(250, 50);
+		etiqueta3.setLocation(20, 260); //Posicion donde se imprime la etiqueta
+		etiqueta3.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta3.setOpaque(true);
+		etiqueta3.setHorizontalAlignment(JLabel.LEFT);
+		etiqueta3.setFont(etiquetas); //Tipo y tamaño del texto
+		Login.add(etiqueta3); //Agrega la etiqueta en la ventana
+		
+		JTextField campoCorreoElectronico = new JTextField();
+		campoCorreoElectronico.setSize(300, 35);
+		campoCorreoElectronico.setLocation(20, 180);
+		campoCorreoElectronico.setBackground(Color.LIGHT_GRAY);
+		campoCorreoElectronico.setOpaque(true);
+		Login.add(campoCorreoElectronico);
+		
+		JPasswordField campoContrasena = new JPasswordField();
+		campoContrasena.setSize(300, 35);
+		campoContrasena.setLocation(20, 340);
+		campoContrasena.setBackground(Color.LIGHT_GRAY);
+		campoContrasena.setOpaque(true);
+		Login.add(campoContrasena);
+		
+		JCheckBox boton = new JCheckBox();
+		boton.setSize(20, 20);
+		boton.setLocation(25, 410);
+		boton.setBackground(Color.white);
+		boton.setOpaque(true);
+		Login.add(boton);
+		
+		JLabel etiqueta4 = new JLabel("Recordarme"); //Creacion de una etiqueta junto con su contenido
+		etiqueta4.setSize(125, 40);
+		etiqueta4.setLocation(10, 400); //Posicion donde se imprime la etiqueta
+		etiqueta4.setHorizontalAlignment(JLabel.RIGHT);
+		etiqueta4.setFont(pequeño); //Tipo y tamaño del texto
+		Login.add(etiqueta4); //Agrega la etiqueta en la ventana
+		
+		JLabel etiqueta5 = new JLabel("¿No recuerdas la contraseña?"); //Creacion de una etiqueta junto con su contenido
+		etiqueta5.setSize(230, 40);
+		etiqueta5.setLocation(150, 400); //Posicion donde se imprime la etiqueta
+		etiqueta5.setHorizontalAlignment(JLabel.RIGHT);
+        etiqueta5.setFont(etiquetas.deriveFont(attributes));
+        etiqueta5.setForeground(Color.BLUE);
+        etiqueta5.setBorder(new EmptyBorder(10,10,10,0)); 
+		Login.add(etiqueta5); //Agrega la etiqueta en la ventana
+
+		JButton botonAcceder = new JButton("ACCEDER");
+		botonAcceder.setSize(300, 50);
+		botonAcceder.setLocation(20, 470);
+		botonAcceder.setBackground(Color.white);
+		botonAcceder.setHorizontalAlignment(JLabel.CENTER);
+		botonAcceder.setOpaque(true);
+		botonAcceder.setFont(etiquetas);
+		Login.add(botonAcceder);
+		Login.repaint();
+		
 
 		JPanel Registro = new JPanel();
 		Registro.setLocation(700, 0);
@@ -398,23 +483,23 @@ public class Ventana extends JFrame {
 		this.add(Registro);
 		this.repaint();
 		
-		JLabel etiqueta1 = new JLabel("REGISTRO"); //Creacion de una etiqueta junto con su contenido
-		etiqueta1.setSize(200, 50);
-		etiqueta1.setLocation(250, 10); //Posicion donde se imprime la etiqueta
-		etiqueta1.setBackground(Color.getHSBColor(3, 24, 86)); //Color de fondo para la etiqueta
-		etiqueta1.setOpaque(true);
-		etiqueta1.setFont(etiquetas); //Tipo y tamaño del texto
-		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
-		Registro.add(etiqueta1); //Agrega la etiqueta en la ventana
+		JLabel etiqueta6 = new JLabel("REGISTRO"); //Creacion de una etiqueta junto con su contenido
+		etiqueta6.setSize(200, 50);
+		etiqueta6.setLocation(250, 10); //Posicion donde se imprime la etiqueta
+		etiqueta6.setBackground(Color.getHSBColor(3, 24, 86)); //Color de fondo para la etiqueta
+		etiqueta6.setOpaque(true);
+		etiqueta6.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta6.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta6); //Agrega la etiqueta en la ventana
 		
-		JLabel etiqueta2 = new JLabel("NOMBRE DE USUARIO: "); //Creacion de una etiqueta junto con su contenido
-		etiqueta2.setSize(300, 50);
-		etiqueta2.setLocation(200, 70); //Hace lo que SetSize y SetLocation
-		etiqueta2.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
-		etiqueta2.setOpaque(true);
-		etiqueta2.setFont(etiquetas); //Tipo y tamaño del texto
-		etiqueta2.setHorizontalAlignment(JLabel.CENTER);
-		Registro.add(etiqueta2); //Agrega la etiqueta en la ventana
+		JLabel etiqueta7 = new JLabel("NOMBRE DE USUARIO: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta7.setSize(300, 50);
+		etiqueta7.setLocation(200, 70); //Hace lo que SetSize y SetLocation
+		etiqueta7.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta7.setOpaque(true);
+		etiqueta7.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta7.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta7); //Agrega la etiqueta en la ventana
 		
 		JTextField campoRegistro = new JTextField();
 		campoRegistro.setSize(400, 35);
@@ -423,14 +508,14 @@ public class Ventana extends JFrame {
 		campoRegistro.setOpaque(true);
 		Registro.add(campoRegistro);
 		
-		JLabel etiqueta3 = new JLabel("BIO: "); //Creacion de una etiqueta junto con su contenido
-		etiqueta3.setSize(100, 40);
-		etiqueta3.setLocation(300, 190); //Hace lo que SetSize y SetLocation
-		etiqueta3.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
-		etiqueta3.setOpaque(true);
-		etiqueta3.setFont(etiquetas); //Tipo y tamaño del texto
-		etiqueta3.setHorizontalAlignment(JLabel.CENTER);
-		Registro.add(etiqueta3); //Agrega la etiqueta en la ventana
+		JLabel etiqueta8 = new JLabel("BIO: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta8.setSize(100, 40);
+		etiqueta8.setLocation(300, 190); //Hace lo que SetSize y SetLocation
+		etiqueta8.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta8.setOpaque(true);
+		etiqueta8.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta8.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta8); //Agrega la etiqueta en la ventana
 		
 		JTextArea campoBiografia = new JTextArea();
 		campoBiografia.setSize(500, 100);
@@ -439,14 +524,14 @@ public class Ventana extends JFrame {
 		campoBiografia.setOpaque(true);
 		Registro.add(campoBiografia);
 		
-		JLabel etiqueta5 = new JLabel("PREFERENCIAS: "); //Creacion de una etiqueta junto con su contenido
-		etiqueta5.setSize(300, 50);
-		etiqueta5.setLocation(200, 370); //Hace lo que SetSize y SetLocation
-		etiqueta5.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
-		etiqueta5.setOpaque(true);
-		etiqueta5.setFont(etiquetas); //Tipo y tamaño del texto
-		etiqueta5.setHorizontalAlignment(JLabel.CENTER);
-		Registro.add(etiqueta5); //Agrega la etiqueta en la ventana
+		JLabel etiqueta9 = new JLabel("PREFERENCIAS: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta9.setSize(300, 50);
+		etiqueta9.setLocation(200, 370); //Hace lo que SetSize y SetLocation
+		etiqueta9.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta9.setOpaque(true);
+		etiqueta9.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta9.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta9); //Agrega la etiqueta en la ventana
 		
 		Border border = BorderFactory.createLineBorder(Color.RED, 10);
 		ButtonGroup grupo1 = new ButtonGroup();
@@ -458,8 +543,7 @@ public class Ventana extends JFrame {
 		boton1.setLocation(75, 440);
 		boton1.setBackground(Color.getHSBColor(335, 32, 82));
 		boton1.setOpaque(true);
-		boton1.setBorder(border);
-		boton1.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+
 		grupo1.add(boton1);
 		Registro.add(boton1);
 		
@@ -468,7 +552,6 @@ public class Ventana extends JFrame {
 		boton2.setLocation(225, 440);
 		boton2.setBackground(Color.getHSBColor(335, 32, 82));
 		boton2.setOpaque(true);
-		boton2.setBorder(border);
 		grupo1.add(boton2);
 		Registro.add(boton2);
 		
@@ -477,18 +560,17 @@ public class Ventana extends JFrame {
 		boton3.setLocation(375, 440);
 		boton3.setBackground(Color.getHSBColor(335, 32, 82));
 		boton3.setOpaque(true);
-		boton3.setBorder(border);
 		grupo1.add(boton3);
 		Registro.add(boton3);
 		
-		JLabel etiqueta6 = new JLabel("TERMINOS Y CONDICIONES: "); //Creacion de una etiqueta junto con su contenido
-		etiqueta6.setSize(400, 50);
-		etiqueta6.setLocation(150, 480); //Hace lo que SetSize y SetLocation
-		etiqueta6.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
-		etiqueta6.setOpaque(true);
-		etiqueta6.setFont(etiquetas); //Tipo y tamaño del texto
-		etiqueta6.setHorizontalAlignment(JLabel.CENTER);
-		Registro.add(etiqueta6); //Agrega la etiqueta en la ventana
+		JLabel etiqueta10 = new JLabel("TERMINOS Y CONDICIONES: "); //Creacion de una etiqueta junto con su contenido
+		etiqueta10.setSize(400, 50);
+		etiqueta10.setLocation(150, 480); //Hace lo que SetSize y SetLocation
+		etiqueta10.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+		etiqueta10.setOpaque(true);
+		etiqueta10.setFont(etiquetas); //Tipo y tamaño del texto
+		etiqueta10.setHorizontalAlignment(JLabel.CENTER);
+		Registro.add(etiqueta10); //Agrega la etiqueta en la ventana
 		
 		JRadioButton boton4 = new JRadioButton("ACEPTO LOS TERMINOS Y CONDICIONES");
 		boton4.setSize(250, 20);
@@ -520,13 +602,61 @@ public class Ventana extends JFrame {
 		boton6.setLocation(350, 600);
 		boton6.setBackground(Color.getHSBColor(335, 32, 82));
 		boton6.setOpaque(true);
-		boton6.setBorder(border);
-		boton6.setBorder(BorderFactory.createLineBorder(Color.blue, 2));
+		boton6.addActionListener(new ActionListener() {
+			
+			
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				System.out.println(campoContrasena.getPassword().equals(""));
+
+				
+				if(campoBiografia.getText().equals("")) {
+					campoBiografia.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+				}
+				else{
+					campoBiografia.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+				}
+				
+				if(campoRegistro.getText().equals("")){
+				campoRegistro.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+				}
+				else {
+					campoRegistro.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+
+				}
+			}
+			
+		});
+		
+		botonAcceder.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String myPassword = String.valueOf(campoContrasena.getPassword());
+				if(campoCorreoElectronico.getText().equals("")) {
+					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+				}
+				else{
+					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+				}
+				
+				if(myPassword.equals("")){
+				campoContrasena.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+				}
+				else {
+					campoContrasena.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+
+				}
+				
+			}
+			
+		});
 		grupo1.add(boton6);
 		Registro.add(boton6);
 		
 		this.repaint();
-		*/
 		
 	}
 	
