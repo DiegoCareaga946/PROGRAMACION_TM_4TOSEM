@@ -31,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -635,18 +636,15 @@ public class Ventana extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String myPassword = String.valueOf(campoContrasena.getPassword());
-				if(campoCorreoElectronico.getText().equals("")) {
-					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+				if(campoCorreoElectronico.getText().equals("diegocareagacel@gmail.com") && myPassword.equals("contraseña") ) {
+					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+					campoContrasena.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+					JOptionPane.showMessageDialog(null, "BIENVENID@", "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
 				}
 				else{
-					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.green, 7));
-				}
-				
-				if(myPassword.equals("")){
-				campoContrasena.setBorder(BorderFactory.createLineBorder(Color.red, 7));
-				}
-				else {
-					campoContrasena.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+					campoContrasena.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+					JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
 
 				}
 				
