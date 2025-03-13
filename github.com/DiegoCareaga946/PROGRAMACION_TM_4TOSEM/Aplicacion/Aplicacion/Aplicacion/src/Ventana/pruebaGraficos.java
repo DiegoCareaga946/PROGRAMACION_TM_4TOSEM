@@ -8,9 +8,9 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JFrame;
 
-public class Prueba extends JFrame {
+public class pruebaGraficos extends JFrame {
 
-    public Prueba() {
+    public pruebaGraficos() {
         this.setTitle("Acceso");
         this.setSize(1400, 700);
         this.setResizable(true);
@@ -55,6 +55,6 @@ public class Prueba extends JFrame {
     }
 
     public static void main(String[] args) {
-        new Prueba();
+        new pruebaGraficos();
     }
 }

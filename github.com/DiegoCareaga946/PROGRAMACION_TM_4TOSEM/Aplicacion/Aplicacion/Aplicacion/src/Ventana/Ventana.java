@@ -231,7 +231,7 @@ public class Ventana extends JFrame {
 		this.repaint();
 		*/
 		
-		/*
+		
 		JMenuBar barra = new JMenuBar(); // Barra de menus
 		
 		JMenu menu1 = new JMenu("Archivo");
@@ -261,7 +261,7 @@ public class Ventana extends JFrame {
 		this.repaint();
 		this.revalidate();
 		
-		
+		/*
 		JPanel Login = new JPanel();
 		Login.setLocation(0, 0); //Establece el sitio de creación
 		Login.setSize(1400, 700); //Ajusta el tamaño que ocupara el panel
@@ -481,7 +481,7 @@ public class Ventana extends JFrame {
 		Registro.setBackground(Color.getHSBColor(180, 143, 171)); //Color de fondo para la etiqueta
 		Registro.setOpaque(true);
 		Registro.setLayout(null);
-		this.add(Registro);
+		//this.add(Registro);
 		this.repaint();
 		
 		JLabel etiqueta6 = new JLabel("REGISTRO"); //Creacion de una etiqueta junto con su contenido
@@ -645,7 +645,6 @@ public class Ventana extends JFrame {
 					campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.red, 7));
 					campoContrasena.setBorder(BorderFactory.createLineBorder(Color.red, 7));
 					JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-
 				}
 				
 			}

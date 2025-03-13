@@ -5,6 +5,9 @@ import javax.swing.UIManager.LookAndFeelInfo;
 public class Main {
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
+			 {
+					PruebaCambio pruebaCambio = new PruebaCambio();
+		}
 			Ventana ventana = new Ventana("Acceso");
 		        try {
 		            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -16,5 +19,6 @@ public class Main {
 		        } catch (Exception e) {
 		            // If Nimbus is not available, you can set the GUI to another look and feel.
 		        }
+		        
 		}
 }
