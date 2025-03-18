@@ -26,26 +26,34 @@ package CambioVentana;
 	import javax.swing.JMenu;
 	import javax.swing.JMenuBar;
 	import javax.swing.JMenuItem;
-	import javax.swing.JPanel;
-	import javax.swing.JRadioButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 	import javax.swing.JRadioButtonMenuItem;
 
 	import java.awt.Dimension;
 	import javax.swing.JButton;
-	import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 	import javax.swing.JTextField;
-	import javax.swing.border.TitledBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 	public class CambioVentana extends JFrame{
-		
-		Font etiquetas = new Font("Annai MN",Font.BOLD,32);
+		Font etiquetas = new Font("Annai MN", Font.BOLD, 32);
+		Font etiquetasCursiva = new Font("Andale Mono", Font.ITALIC, 22);
+		Font pequeño = new Font("Andale Mono", Font.ROMAN_BASELINE, 14);
+		Font subtitulo = new Font("Arial", Font.ITALIC, 14);
+		Font normal = new Font("Arial", Font.BOLD, 16);
+		Map attributes = subtitulo.getAttributes();
 		Font tags = new Font("Annai MN",Font.BOLD,22);
 
 		public CambioVentana(String title) {
 			
 			this.setTitle(title);
 			this.setVisible(true);
-			this.setSize(1000, 600);
+			this.setSize(500, 600);
 			
 			//this.setBackground(Color.black);		
 			this.setResizable(true);
@@ -212,60 +220,110 @@ package CambioVentana;
 		
 		public JPanel login() {
 			
-			JPanel login = new JPanel();
-			login.setLocation(0, 0);
-			login.setSize(500, 500);
-			login.setOpaque(true);
-			login.setBackground(new Color(229, 114, 126));
-			login.setVisible(true);
-			login.setLayout(null);
 			
-			JLabel etiqueta1 = new JLabel("Bienvenido");
-			etiqueta1.setSize(200, 40);
-			etiqueta1.setLocation(160,10);
-			etiqueta1.setBackground(Color.ORANGE);
+			JPanel Login = new JPanel();
+			Login.setLocation(0, 0);
+			Login.setSize(500, 600);
+			Login.setBackground(Color.getHSBColor(209, 143, 171)); //Color de fondo para la etiqueta
+			Login.setOpaque(true);
+			Login.setLayout(null);
+			this.add(Login);
+			this.repaint();
+			
+			JLabel etiqueta1 = new JLabel("ACCEDER"); //Creacion de una etiqueta junto con su contenido
+			etiqueta1.setSize(200, 50);
+			etiqueta1.setLocation(50, 10); //Posicion donde se imprime la etiqueta
+			etiqueta1.setBackground(Color.getHSBColor(3, 24, 86)); //Color de fondo para la etiqueta
 			etiqueta1.setOpaque(true);
+			etiqueta1.setFont(etiquetas); //Tipo y tamaño del texto
 			etiqueta1.setHorizontalAlignment(JLabel.CENTER);
-			etiqueta1.setFont(etiquetas);
-			login.add(etiqueta1);
+			Login.add(etiqueta1); //Agrega la etiqueta en la ventana
 			
-			JLabel etiqueta2 = new JLabel("Correo");
-			etiqueta2.setBounds(60, 150,160, 30);   
-			etiqueta2.setFont(tags);
-			etiqueta2.setForeground(Color.white);
-			login.add(etiqueta2);
+			JLabel etiqueta2 = new JLabel("Correo Electrónico: "); //Creacion de una etiqueta junto con su contenido
+			etiqueta2.setSize(350, 50);
+			etiqueta2.setLocation(20, 100); //Hace lo que SetSize y SetLocation
+			etiqueta2.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+			etiqueta2.setOpaque(true);
+			etiqueta2.setFont(etiquetas); //Tipo y tamaño del texto
+			etiqueta2.setHorizontalAlignment(JLabel.LEFT);
+			Login.add(etiqueta2); //Agrega la etiqueta en la ventana
 			
-			JTextField email = new JTextField();
-			email.setBounds(60, 200,260, 30);  
-			email.setFont(tags);
-			//email.setBackground(Color.GREEN);
-			//email.setOpaque(true);
-			login.add(email);
+			JLabel etiqueta3 = new JLabel("Contraseña: "); //Creacion de una etiqueta junto con su contenido
+			etiqueta3.setSize(250, 50);
+			etiqueta3.setLocation(20, 260); //Posicion donde se imprime la etiqueta
+			etiqueta3.setBackground(Color.getHSBColor(335, 32, 82)); //Color de fondo para la etiqueta
+			etiqueta3.setOpaque(true);
+			etiqueta3.setHorizontalAlignment(JLabel.LEFT);
+			etiqueta3.setFont(etiquetas); //Tipo y tamaño del texto
+			Login.add(etiqueta3); //Agrega la etiqueta en la ventana
 			
-			JButton access = new JButton("Acceder");
-			access.setBounds(60, 300,260, 60);  
-			access.setFont(etiquetas);
-			access.setBackground(Color.GREEN);
-			access.setOpaque(true);
+			JTextField campoCorreoElectronico = new JTextField();
+			campoCorreoElectronico.setSize(300, 35);
+			campoCorreoElectronico.setLocation(20, 180);
+			campoCorreoElectronico.setBackground(Color.LIGHT_GRAY);
+			campoCorreoElectronico.setOpaque(true);
+			Login.add(campoCorreoElectronico);
 			
-			access.addActionListener(new ActionListener() {
+			JPasswordField campoContrasena = new JPasswordField();
+			campoContrasena.setSize(300, 35);
+			campoContrasena.setLocation(20, 340);
+			campoContrasena.setBackground(Color.LIGHT_GRAY);
+			campoContrasena.setOpaque(true);
+			Login.add(campoContrasena);
+			
+			JCheckBox boton = new JCheckBox();
+			boton.setSize(20, 20);
+			boton.setLocation(25, 410);
+			boton.setBackground(Color.white);
+			boton.setOpaque(true);
+			Login.add(boton);
+			
+			JLabel etiqueta4 = new JLabel("Recordarme"); //Creacion de una etiqueta junto con su contenido
+			etiqueta4.setSize(125, 40);
+			etiqueta4.setLocation(10, 400); //Posicion donde se imprime la etiqueta
+			etiqueta4.setHorizontalAlignment(JLabel.RIGHT);
+			etiqueta4.setFont(pequeño); //Tipo y tamaño del texto
+			Login.add(etiqueta4); //Agrega la etiqueta en la ventana
+			
+			JLabel etiqueta5 = new JLabel("¿No recuerdas la contraseña?"); //Creacion de una etiqueta junto con su contenido
+			etiqueta5.setSize(230, 40);
+			etiqueta5.setLocation(150, 400); //Posicion donde se imprime la etiqueta
+			etiqueta5.setHorizontalAlignment(JLabel.RIGHT);
+	        etiqueta5.setFont(etiquetas.deriveFont(attributes));
+	        etiqueta5.setForeground(Color.BLUE);
+	        etiqueta5.setBorder(new EmptyBorder(10,10,10,0)); 
+			Login.add(etiqueta5); //Agrega la etiqueta en la ventana
+
+			JButton botonAcceder = new JButton("ACCEDER");
+			botonAcceder.setSize(300, 50);
+			botonAcceder.setLocation(20, 440);
+			botonAcceder.setBackground(Color.white);
+			botonAcceder.setHorizontalAlignment(JLabel.CENTER);
+			botonAcceder.setOpaque(true);
+			botonAcceder.setFont(etiquetas);
+			Login.add(botonAcceder);
+			
+			botonAcceder.addActionListener(new ActionListener() {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					System.out.println("Hola");
-					
-					if( email.getText().equals("") ) {
-						
-						email.setBorder(BorderFactory.createLineBorder(Color.red,10));
-						
+					String myPassword = String.valueOf(campoContrasena.getPassword());
+					if(campoCorreoElectronico.getText().equals("diegocareagacel@gmail.com") && myPassword.equals("contraseña") ) {
+						campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+						campoContrasena.setBorder(BorderFactory.createLineBorder(Color.green, 7));
+						JOptionPane.showMessageDialog(null, "BIENVENID@", "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
 					}
-					
-				} 
+					else{
+						campoCorreoElectronico.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+						campoContrasena.setBorder(BorderFactory.createLineBorder(Color.red, 7));
+						JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
 			});
 			
 			JButton ir_al_registro = new JButton("¿Aún no tienes cuenta?");
-			ir_al_registro.setLocation(60, 380);
-			ir_al_registro.setSize(200, 40);
+			ir_al_registro.setLocation(70, 495);
+			ir_al_registro.setSize(200, 30);
 			
 			ir_al_registro.addActionListener(new ActionListener() {
 
@@ -277,14 +335,13 @@ package CambioVentana;
 				
 			});
 			
-			login.add(ir_al_registro);
+			Login.add(ir_al_registro);
 			
-			
-			login.add(access);
+			Login.add(botonAcceder);
 				
-			login.revalidate();
+			Login.revalidate();
 			
-			return login;
+			return Login;
 		}
 		
 		public JPanel registro()
@@ -346,7 +403,7 @@ package CambioVentana;
 			
 			
 			JButton ir_al_login = new JButton("¿Ya tienes cuenta?");
-			ir_al_login.setLocation(60, 380);
+			ir_al_login.setLocation(60, 400);
 			ir_al_login.setSize(200, 40);
 			
 			ir_al_login.addActionListener(new ActionListener() {

@@ -609,8 +609,6 @@ public class Ventana extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				System.out.println(campoContrasena.getPassword().equals(""));
 
 				
 				if(campoBiografia.getText().equals("")) {
