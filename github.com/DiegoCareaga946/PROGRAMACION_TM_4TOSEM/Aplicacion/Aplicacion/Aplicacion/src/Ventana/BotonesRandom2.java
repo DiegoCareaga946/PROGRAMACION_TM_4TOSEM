@@ -71,7 +71,9 @@ public BotonesRandom2 (String title) {
 				nuevo.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
+						
 						int valor = JOptionPane.showConfirmDialog(null, "Color: " + randomColor.toString() + "\n" +"¿Desea borrar el boton?");
+						
 						if(valor == JOptionPane.YES_OPTION) {
 							fondo.remove(nuevo);	
 							fondo.repaint();
