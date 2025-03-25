@@ -57,7 +57,7 @@ public class JuegoGato_Window extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-			
+
 
 			public JuegoGato_Window () {
 				Font contadores_letra= new Font("Dialog", Font.BOLD, 14);
@@ -79,23 +79,21 @@ public class JuegoGato_Window extends JFrame {
 				contadorX.setBounds(6, 5, 150, 19);
 				contadorX.setFont(new Font("Dialog", Font.BOLD, 20));
 				contadores_espacio.add(contadorX);
+				
 				JLabel contadorO = new JLabel("Contador O: " + cO);
 				contadorO.setFont(new Font("Dialog", Font.BOLD, 20));
 				contadorO.setBounds(6, 34, 141, 19);
 				contadores_espacio.add(contadorO);
 				this.repaint();
 				this.revalidate();
-				BorderLayout ventana = new BorderLayout();
-				getContentPane().add(contadores_espacio);
-				
-				GridLayout medidas = new GridLayout(3,3);
+
 				JPanel fondo = new JPanel();
 				fondo.setBackground(new Color(0, 128, 0));
 				fondo.setBounds(52, 69, 572, 560);
-				contadores_espacio.add(fondo);
-				fondo.setLayout(medidas);
+				fondo.setLayout(new GridLayout(3,3));
 				fondo.setVisible(true);
 				fondo.setOpaque(true);
+				contadores_espacio.add(fondo);
 				
 				boton1 = new JButton();
 				boton1.setBounds(0, 0, 30, 30);
@@ -368,18 +366,52 @@ public class JuegoGato_Window extends JFrame {
 				        boton9.setEnabled(true);
 					    turno = true;
 					    gano = false;
-					    cX = 0;
-					    cO = 0;
-					    contadorX.setText("Contador X: 0");
-					    contadorO.setText("Contador O: 0");
 					}
 				});
 				contadores_espacio.add(reiniciar);
 				this.repaint();
 				
 				
-				
-				
+			}
+			
+			public void restart() {
+				boton1.setText("");
+		        boton1.setIcon(null);
+		        boton1.setEnabled(true);
+		        
+		        boton2.setText("");
+		        boton2.setIcon(null);
+		        boton2.setEnabled(true);
+		        
+		        boton3.setText("");
+		        boton3.setIcon(null);
+		        boton3.setEnabled(true);
+		        
+		        boton4.setText("");
+		        boton4.setIcon(null);
+		        boton4.setEnabled(true);
+		        
+		        boton5.setText("");
+		        boton5.setIcon(null);
+		        boton5.setEnabled(true);
+		        
+		        boton6.setText("");
+		        boton6.setIcon(null);
+		        boton6.setEnabled(true);
+		        
+		        boton7.setText("");
+		        boton7.setIcon(null);
+		        boton7.setEnabled(true);
+		        
+		        boton8.setText("");
+		        boton8.setIcon(null);
+		        boton8.setEnabled(true);
+		        
+		        boton9.setText("");
+		        boton9.setIcon(null);
+		        boton9.setEnabled(true);
+			    turno = true;
+			    gano = false;
 			}
 			
 
@@ -387,11 +419,13 @@ public class JuegoGato_Window extends JFrame {
 				if(boton1.getText().equals(boton2.getText()) && 
 						boton2.getText().equals(boton3.getText()) && 
 						!boton1.getText().equals("") && gano == false ) {
-					if(boton1.getText() == "X") {
+					if(boton1.getText() == "X" || boton1.getIcon() == x) {
 						cX++;
+						restart();
 					}
-					if (boton1.getText() == "O"){
+					else if (boton1.getText() == "O" || boton1.getIcon() == o){
 						cO++;
+						restart();
 					}
 					JOptionPane.showMessageDialog(null, "Ganaste " + boton1.getText());
 					
@@ -443,6 +477,7 @@ public class JuegoGato_Window extends JFrame {
 					gano = true;
 					
 				}
+				this.repaint();
 			}
 			
 			public static void main(String[] args) {
