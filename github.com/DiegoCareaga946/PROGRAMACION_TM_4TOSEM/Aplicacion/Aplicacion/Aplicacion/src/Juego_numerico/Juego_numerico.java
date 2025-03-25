@@ -86,6 +86,13 @@ public class Juego_numerico extends JFrame{
 			panel_botones.setBackground(new Color(147, 120, 190));
 			fondo.add(panel_botones);
 
+			JButton reiniciar = new JButton("Reiniciar");
+			reiniciar.setBounds(260, 100, 150, 30);
+			reiniciar.setFont(etiquetas);
+			reiniciar.setVisible(true);
+			reiniciar.setBackground(new Color(255, 242, 114));
+			fondo.add(reiniciar);
+			
 			Random rand = new Random();
 			int num_boton = 0;	
 
@@ -108,6 +115,7 @@ public class Juego_numerico extends JFrame{
 					panel_botones.add(boton);
 					num_boton = contadores;
 			}
+			
 			
 			
 			this.revalidate();
