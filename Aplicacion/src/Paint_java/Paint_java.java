@@ -31,6 +31,8 @@ public class Paint_java extends JFrame{
 	ImageIcon triangulo = new ImageIcon(("src/triangulo.png"));
 	ImageIcon cuadrado = new ImageIcon(("src/cuadrado.png"));
 	ImageIcon circulo = new ImageIcon(("src/circulo.png"));
+	ImageIcon linea = new ImageIcon(("src/linea.png"));
+
 
 	Image l = icono_lapiz.getImage().getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING);
 	
@@ -41,6 +43,8 @@ public class Paint_java extends JFrame{
 	Image f_cua = cuadrado.getImage().getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING);
 	
 	Image f_tri = triangulo.getImage().getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING);
+	
+	Image f_lin = linea.getImage().getScaledInstance(30, 30, Image.SCALE_AREA_AVERAGING);
 
 	public Paint_java() {
 
@@ -55,7 +59,23 @@ public class Paint_java extends JFrame{
 		this.setVisible(true);
 
 		
+		
+		JButton limpiar = new JButton("Limpiar");
 
+		limpiar.setBounds(50,20, 100, 30);
+
+		limpiar.setVisible(true);
+
+		limpiar.revalidate();
+		
+		limpiar.setBackground(Color.white);
+		
+		limpiar.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		this.add(limpiar);
+
+		
+		
 		JPanel panel_izquierdo = new JPanel();
 
 		panel_izquierdo.setBounds(0, 0, 200, 700);
@@ -205,7 +225,7 @@ public class Paint_java extends JFrame{
 		
 		JButton triangulo = new JButton();
 
-		triangulo.setBounds(100, 100, 30, 30);
+		triangulo.setBounds(100, 70, 30, 30);
 
 		triangulo.setIcon(new ImageIcon(f_tri));
 
@@ -218,6 +238,28 @@ public class Paint_java extends JFrame{
 		triangulo.setBorder(null);
 
 		figuras.add(triangulo);
+		
+		
+		
+		JButton linea = new JButton();
+
+		linea.setBounds(100, 130, 30, 30);
+
+		linea.setIcon(new ImageIcon(f_lin));
+
+		linea.setVisible(true);
+
+		linea.revalidate();
+		
+		linea.setBackground(null);
+		
+		linea.setBorder(null);
+
+		figuras.add(linea);
+		
+		
+		
+		
 		
 
 		JPanel colores = new JPanel();
@@ -243,7 +285,7 @@ public class Paint_java extends JFrame{
 
 		azul.setBounds(50, 30, 30, 30);
 
-		azul.setBackground(new Color(126, 200, 240));
+		azul.setBackground(Color.black);
 
 		azul.setOpaque(true);
 
@@ -254,7 +296,7 @@ public class Paint_java extends JFrame{
 
 		verde.setBounds(50, 80, 30, 30);
 
-		verde.setBackground(new Color(197, 240, 126));
+		verde.setBackground(Color.white);
 
 		verde.setOpaque(true);
 
@@ -265,7 +307,7 @@ public class Paint_java extends JFrame{
 
 		rojo.setBounds(100, 80, 30, 30);
 
-		rojo.setBackground(new Color(240, 126, 126));
+		rojo.setBackground(Color.red);
 
 		rojo.setOpaque(true);
 
@@ -276,7 +318,7 @@ public class Paint_java extends JFrame{
 
 		naranja.setBounds(100, 30, 30, 30);
 
-		naranja.setBackground(new Color(240, 195, 126));
+		naranja.setBackground(Color.gray);
 
 		naranja.setOpaque(true);
 
@@ -287,7 +329,7 @@ public class Paint_java extends JFrame{
 
 		morado.setBounds(150, 30, 30, 30);
 
-		morado.setBackground(new Color(193, 126, 240));
+		morado.setBackground(Color.blue);
 
 		morado.setOpaque(true);
 
@@ -298,33 +340,11 @@ public class Paint_java extends JFrame{
 
 		rosa.setBounds(150, 80, 30, 30);
 
-		rosa.setBackground(new Color(240, 126, 225));
+		rosa.setBackground(Color.green);
 
 		rosa.setOpaque(true);
 
 		colores.add(rosa);
-		
-		
-		JButton rosa_fuxia = new JButton();
-
-		rosa_fuxia.setBounds(200, 80, 30, 30);
-
-		rosa_fuxia.setBackground(new Color(240, 126, 171));
-
-		rosa_fuxia.setOpaque(true);
-
-		colores.add(rosa_fuxia);
-		
-		
-		JButton azul_oscuro = new JButton();
-
-	 azul_oscuro.setBounds(200, 30, 30, 30);
-
-	 azul_oscuro.setBackground(new Color(126, 141, 240));
-
-	 azul_oscuro.setOpaque(true);
-
-		colores.add (azul_oscuro);
 		
 		this.repaint();
 	}
