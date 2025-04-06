@@ -73,7 +73,7 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		this.setVisible(true);
-
+		
 		JButton limpiar = new JButton("Limpiar");
 		limpiar.setBounds(50,20, 100, 30);
 		limpiar.setVisible(true);
@@ -116,7 +116,20 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 		herramientas.setLayout(new GridLayout(3,1,5,5));
 		herramientas.setOpaque(true);
 		panel_izquierdo.add(herramientas);
+		
+		JPanel figuras = new JPanel();
+		figuras.setBounds(20, 350, 160, 250);
+		figuras.setBackground( new Color(234, 234, 234));
+		figuras.setBorder(BorderFactory.createTitledBorder("FIGURAS"));
+		figuras.setOpaque(true);
+		panel_izquierdo.add(figuras);
 
+		JPanel color_actual = new JPanel();
+		color_actual.setBounds(900, 80, 50, 50);
+		color_actual.setBackground(color_personalizado);
+		color_actual.setOpaque(true);
+		panel_arriba.add(color_actual);
+		
 		JSlider grosor = new JSlider(1, 10, 3);
 		grosor.setBounds(15, 180, 130, 30);
 		grosor.setVisible(true);
@@ -182,6 +195,7 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				color_personalizado = Color.blue;
+				color_actual.repaint();
 			}
 		});
 		colores.add(azul);
@@ -197,6 +211,40 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 			}
 		});
 		colores.add(rojo);
+		
+		JButton cuadrado = new JButton();
+		cuadrado.setBounds(30, 130, 30, 30);
+		cuadrado.setIcon(new ImageIcon(f_cua));
+		cuadrado.setVisible(true);
+		cuadrado.revalidate();
+		cuadrado.setBackground(null);
+		cuadrado.setBorder(null);
+		cuadrado.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tool = 3;
+				System.out.println(tool);
+			}
+		});
+		figuras.add(cuadrado);
+		
+		JButton circulo = new JButton();
+		circulo.setBounds(30, 70, 30, 30);
+		circulo.setIcon(new ImageIcon(f_cir));
+		circulo.setVisible(true);
+		circulo.revalidate();
+		circulo.setBackground(null);
+		circulo.setBorder(null);
+		circulo.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tool = 4;
+				System.out.println(tool);
+			}
+		});
+		figuras.add(circulo);
 		
 		this.repaint();
 		
@@ -242,6 +290,22 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 	    	   }
 	    	   
 	       }
+	       if(figuras.size()>0) {
+	    	   
+	    	   for (int i = 1; i < figuras.size(); i++) {
+	    		   
+	    		   Figura f = figuras.get(i);
+	    		   
+	    		   if(tool == 3) {
+	    			   g2.drawRect(f.x,f.y,f.w,f.h); 	    			   
+	    		   }
+	    		   else if(tool == 4) {
+	    			   g2.drawOval(f.x,f.y,f.w,f.h);
+	    		   }
+	    		   
+	    	   }
+	    	   
+	       }
 	       
 	       for (Iterator iterator = listaDePuntos.iterator(); iterator.hasNext();) {
 			List<punto> trazo = (List<punto>) iterator.next();
@@ -257,10 +321,10 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 		    		   g2.setColor(p1.c); 
 		    		   g2.drawLine(p1.x,p1.y,p2.x,p2.y);
 		    	   }
-		    	   
-		       }
-			
+				}
 	       }
+	       
+	       
 	   }
 	}
 
@@ -312,6 +376,17 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		int tamLargo = 30;
+		int tamAlto = 30;
+		
+		if(tool == 3) {
+			figuras.add( new Figura(e.getX(),e.getY(),tamLargo,tamAlto,color_personalizado));
+			panelDibujo.repaint();
+		}
+		else if(tool == 4) {
+			figuras.add( new Figura(e.getX(),e.getY(),tamLargo,tamAlto,color_personalizado));
+			panelDibujo.repaint();
+		}
 	}
 	
 	
@@ -329,6 +404,7 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 	}
 	
 	class Figura{
+		public float g;
 		public int x,y,w,h;
 		public Color c;
 		public Figura(int x, int y, int w, int h, Color c) {
@@ -357,24 +433,12 @@ public class Paint_java extends JFrame implements  MouseListener, MouseMotionLis
 	colores.setOpaque(true);
 	panel_arriba.add(colores);
 	
-	JButton azul = new JButton();
-	azul.setBounds(50, 30, 30, 30);
-	azul.setBackground(Color.black);
-	azul.setOpaque(true);
-	colores.add(azul);
-	
 	JButton verde = new JButton();
 	verde.setBounds(50, 80, 30, 30);
 	verde.setBackground(Color.white);
 	verde.setOpaque(true);
 	colores.add(verde);
 
-	JButton rojo = new JButton();
-	rojo.setBounds(100, 80, 30, 30);
-	rojo.setBackground(Color.red);
-	rojo.setOpaque(true);
-	colores.add(rojo);
-	
 	JButton naranja = new JButton();
 	naranja.setBounds(100, 30, 30, 30);
 	naranja.setBackground(Color.gray);
