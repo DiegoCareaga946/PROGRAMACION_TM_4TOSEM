@@ -43,25 +43,15 @@ public class Teclado extends JFrame implements KeyListener {
 			}
 		});
 	}
-	class Lienzo extends JPanel{
-		
-		@Override
-	   public void paintComponent(Graphics g) {
-	       super.paintComponent(g);
-	       
-	       Graphics2D g2 = (Graphics2D) g; 
-	       g2.setColor(Color.green);
-	       g2.fillRect(x, y, 50, 50);
-		}
-	}
+	
 	/**
 	 * Create the frame.
 	 */
 	public Teclado() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 100, 592, 648);
-		this.addKeyListener(this);
-		this.setFocusable(true);
+		setBounds(300, 100, 500, 648);
+		addKeyListener(this);
+		setFocusable(true);
 		setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -75,6 +65,11 @@ public class Teclado extends JFrame implements KeyListener {
 		JButton btnNewButton = new JButton("REINICIAR");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				x = 0;
+				y = 0;
+				cuadrito.setLocation(x,y);
+				cuadrito.setFocusable(true);
+				cuadrito.requestFocusInWindow();
 			}
 		});
 		panel.add(btnNewButton);
@@ -90,29 +85,45 @@ public class Teclado extends JFrame implements KeyListener {
 		
 		cuadrito = new Lienzo();
 		cuadrito.setBounds(x, y, 30, 30);
+		cuadrito.setFocusable(true);
+		cuadrito.addKeyListener(this);
+		cuadrito.requestFocusInWindow();
 		cuadrito.setBackground(Color.green);
 		panel_2.add(cuadrito);
 		
 		
 	}
-	
+	class Lienzo extends JPanel{
+			
+		@Override
+	   public void paintComponent(Graphics g) {
+	       super.paintComponent(g);
+	       Graphics2D g2 = (Graphics2D) g; 
+	       g2.setColor(Color.green);
+	       g2.fillRect(x, y, 50, 50);
+		}
+	}
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		switch(e.getKeyChar()) {
 		case 'a':
+			if(x > 0)
 			x = x-5;
 			cuadrito.setLocation(x, y);
 			break;
 		case 'd':
+			if(x < 445)
 			x = x+5;
 			cuadrito.setLocation(x, y);
 			break;
 		case 'w':
+			if(y > 0)
 			y = y-5;
 			cuadrito.setLocation(x, y);
 			break;
 		case 's':
+			if(y < 510)
 			y = y+5;
 			cuadrito.setLocation(x, y);
 			break;	
