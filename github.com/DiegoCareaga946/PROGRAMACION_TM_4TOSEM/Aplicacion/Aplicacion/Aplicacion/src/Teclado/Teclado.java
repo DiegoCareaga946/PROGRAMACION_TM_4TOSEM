@@ -1,144 +1,207 @@
 package Teclado;
 
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Color;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
 
 public class Teclado extends JFrame implements KeyListener {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private final JLabel lblNewLabel = new JLabel("TIMER: ");
-	int x = 0;
-	int y = 0;
-	Lienzo cuadrito;
+    private JPanel contentPane;
+    private Lienzo lienzo;
+    int x = 0;
+    int y = 0;
+    int w = 700;
+    int h = 700;
+    private ArrayList<Obstaculo> figuras = new ArrayList<Obstaculo>();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Teclado frame = new Teclado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                Teclado frame = new Teclado();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public Teclado() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(300, 100, 500, 648);
+
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(contentPane);
+        contentPane.setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel = new JPanel();
+        contentPane.add(panel, BorderLayout.SOUTH);
+
+        JLabel cartel = new JLabel("Reiniciar pulsa + " + "R");
+        panel.add(cartel);
+
+        JPanel panel_1 = new JPanel();
+        panel_1.add(new JLabel("TIMER: "));
+        contentPane.add(panel_1, BorderLayout.NORTH);
+        
+        
+        lienzo = new Lienzo();
+        lienzo.setBounds(x, y, w, h);
+        lienzo.setFocusable(true);
+        lienzo.requestFocusInWindow();
+        lienzo.addKeyListener(this);
+        lienzo.setBackground(Color.black);
+        this.add(lienzo);
+    }
+    
+    class Lienzo extends JPanel {
+        Player jugador;
+        Obstaculo obstaculo = new Obstaculo(150, 350, 220, 40);
+        Obstaculo obstaculo2 = new Obstaculo(150, 100, 220, 40);
+        
+        
+        public Lienzo() {
+        	setFocusable(true); 
+    	    requestFocusInWindow(); 
+    	    setBackground(Color.black);
+    	    jugador = new Player(0, 0, 50, 50, Color.green);
+    	    figuras.add(obstaculo);
+    	    figuras.add(obstaculo2);
+    	   
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+
+            for (Obstaculo obstaculo : figuras) {
+				obstaculo.draw(g2);
 			}
-		});
-	}
-	
-	/**
-	 * Create the frame.
-	 */
-	public Teclado() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(300, 100, 500, 648);
-		addKeyListener(this);
-		setFocusable(true);
-		setVisible(true);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+            jugador.draw(g2);
+        }
 
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.SOUTH);
-		
-		JButton btnNewButton = new JButton("REINICIAR");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				x = 0;
-				y = 0;
-				cuadrito.setLocation(x,y);
-				cuadrito.setFocusable(true);
-				cuadrito.requestFocusInWindow();
-			}
-		});
-		panel.add(btnNewButton);
-		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1, BorderLayout.NORTH);
-		panel_1.add(lblNewLabel);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Color.gray);
-		panel_2.setLayout(null);
-		contentPane.add(panel_2);
-		
-		cuadrito = new Lienzo();
-		cuadrito.setBounds(x, y, 30, 30);
-		cuadrito.setFocusable(true);
-		cuadrito.addKeyListener(this);
-		cuadrito.requestFocusInWindow();
-		cuadrito.setBackground(Color.green);
-		panel_2.add(cuadrito);
-		
-		
-	}
-	class Lienzo extends JPanel{
-			
-		@Override
-	   public void paintComponent(Graphics g) {
-	       super.paintComponent(g);
-	       Graphics2D g2 = (Graphics2D) g; 
-	       g2.setColor(Color.green);
-	       g2.fillRect(x, y, 50, 50);
-		}
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		switch(e.getKeyChar()) {
-		case 'a':
-			if(x > 0)
-			x = x-5;
-			cuadrito.setLocation(x, y);
-			break;
-		case 'd':
-			if(x < 445)
-			x = x+5;
-			cuadrito.setLocation(x, y);
-			break;
-		case 'w':
-			if(y > 0)
-			y = y-5;
-			cuadrito.setLocation(x, y);
-			break;
-		case 's':
-			if(y < 510)
-			y = y+5;
-			cuadrito.setLocation(x, y);
-			break;	
-		}
-	}
+        public void moverJugador(int dx, int dy) {
+        	
+        	for (Obstaculo obstaculo : figuras) {
+        		int movimientoX = jugador.x + dx;
+        		int movimientoY = jugador.y + dy;
+        		
+        		int jLeft = movimientoX;
+        		int jRight = movimientoX + jugador.w;
+        		int jTop = movimientoY;
+        		int jBottom = movimientoY + jugador.h;
+       		
+                 int lLeft = 0;
+                 int lRight = 700;
+                 int lTop = 0;
+                 int lBottom = 700;
+        		
+                 int oLeft = obstaculo.x;
+                 int oRight = obstaculo.x + obstaculo.w;
+                 int oTop = obstaculo.y;
+                 int oBottom = obstaculo.y + obstaculo.h;
+                 boolean colision = !(jRight <= oLeft || jLeft >= oRight || jBottom <= oTop || jTop >= oBottom);
+                 if (colision) {
+                     System.out.println("Colisión detectada");
+                     return;
+                 }
+                 else if (jRight <= lLeft || jLeft >= lRight || jBottom<= lTop || jTop >= lBottom) {
+                	System.out.println("Colision paredes");
+                	return;
+                }
+             }
+             jugador.move(dx, dy);
+             repaint();
+        }
 
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-	}
+        public void reiniciarJugador() {
+            jugador.reiniciar();
+        }
+    }
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        switch (key) {
+            case KeyEvent.VK_A:
+                lienzo.moverJugador(-5, 0);
+                break;
+            case KeyEvent.VK_D:
+                lienzo.moverJugador(5, 0);
+                break;
+            case KeyEvent.VK_W:
+                lienzo.moverJugador(0, -5);
+                break;
+            case KeyEvent.VK_S:
+                lienzo.moverJugador(0, 5);
+                break;
+            case KeyEvent.VK_R:
+            	lienzo.jugador.reiniciar();
+                break;
+        }
+    }
 
+    @Override
+    public void keyReleased(KeyEvent e) {
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+    
+    class Player {
+        int x, y, w, h;
+        Color color;
+
+        public Player(int x, int y, int w, int h, Color color) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+            this.color = color;
+        }
+
+        public void draw(Graphics2D g2) {
+            g2.setColor(color);
+            g2.fillRect(x, y, w, h);
+        }
+
+        public Rectangle getBounds() {
+            return new Rectangle(x, y, w, h);
+        }
+
+        public void move(int dx, int dy) {
+            x += dx;
+            y += dy;
+            repaint();
+        }
+
+        public void reiniciar() {
+            x = 0;
+            y = 0;
+            repaint();
+        }
+    }
+
+    class Obstaculo {
+        int x, y, w, h;
+        Color color = Color.orange;
+
+        public Obstaculo(int x, int y, int w, int h) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+        }
+
+        public void draw(Graphics2D g2) {
+            g2.setColor(color);
+            g2.fillRect(x, y, w, h);
+        }
+    }
 }
