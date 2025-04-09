@@ -95,11 +95,6 @@ public class Teclado extends JFrame implements KeyListener {
         		int jRight = movimientoX + jugador.w;
         		int jTop = movimientoY;
         		int jBottom = movimientoY + jugador.h;
-       		
-                 int lLeft = 0;
-                 int lRight = 700;
-                 int lTop = 0;
-                 int lBottom = 700;
         		
                  int oLeft = obstaculo.x;
                  int oRight = obstaculo.x + obstaculo.w;
@@ -110,7 +105,7 @@ public class Teclado extends JFrame implements KeyListener {
                      System.out.println("Colisión detectada");
                      return;
                  }
-                 else if (jRight <= lLeft || jLeft >= lRight || jBottom<= lTop || jTop >= lBottom) {
+                 else if (movimientoX<0 || movimientoY < 0 || jRight > lienzo.getWidth() || Bottom > lienzo.getHeight()) {
                 	System.out.println("Colision paredes");
                 	return;
                 }
