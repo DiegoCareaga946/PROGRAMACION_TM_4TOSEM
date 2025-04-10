@@ -3,15 +3,27 @@ package Teclado;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
 public class Teclado extends JFrame implements KeyListener {
-
+	
+	
+	
+	Player jugador;
+    Obstaculo obstaculo = new Obstaculo(150, 350, 220, 40);
+    Obstaculo obstaculo2 = new Obstaculo(150, 100, 220, 40);
     private JPanel contentPane;
     private Lienzo lienzo;
+    Timer timer, timer2;
+    int lastPress;
+    int seg;
+    int mil = 1;
+    int dx = 0;
+    int dy = 0;
     int x = 0;
     int y = 0;
     int w = 700;
@@ -40,14 +52,46 @@ public class Teclado extends JFrame implements KeyListener {
         
         JPanel panel = new JPanel();
         contentPane.add(panel, BorderLayout.SOUTH);
-
         JLabel cartel = new JLabel("Reiniciar pulsa + " + "R");
         panel.add(cartel);
 
         JPanel panel_1 = new JPanel();
-        panel_1.add(new JLabel("TIMER: "));
+        
+        JLabel tiempo = new JLabel("Timer --> 0:0");
+        panel_1.add(tiempo);
         contentPane.add(panel_1, BorderLayout.NORTH);
         
+        ActionListener taskPerformer = new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		// TODO Auto-generated method stub
+        		String [] split_string = tiempo.getText().split(":");
+        		mil = Integer.parseInt(split_string[1]);
+        		
+        		mil+=1;
+        		
+        		if(mil>=10) {
+        			seg++;
+        			mil = 1;        			
+        		}
+        		
+        		tiempo.setText("Timer " + seg + ":" + mil + "");
+        	}
+        };
+        timer = new Timer(100, taskPerformer);
+        
+        ActionListener movimiento = new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		// TODO Auto-generated method stub
+        		lienzo.moverJugador(dx, dy);
+        		updated();
+        	}
+        };
+        
+        timer2 = new Timer(5, movimiento);
         
         lienzo = new Lienzo();
         lienzo.setBounds(x, y, w, h);
@@ -59,9 +103,7 @@ public class Teclado extends JFrame implements KeyListener {
     }
     
     class Lienzo extends JPanel {
-        Player jugador;
-        Obstaculo obstaculo = new Obstaculo(150, 350, 220, 40);
-        Obstaculo obstaculo2 = new Obstaculo(150, 100, 220, 40);
+       
         
         
         public Lienzo() {
@@ -96,19 +138,23 @@ public class Teclado extends JFrame implements KeyListener {
         		int jTop = movimientoY;
         		int jBottom = movimientoY + jugador.h;
         		
-                 int oLeft = obstaculo.x;
-                 int oRight = obstaculo.x + obstaculo.w;
-                 int oTop = obstaculo.y;
-                 int oBottom = obstaculo.y + obstaculo.h;
-                 boolean colision = !(jRight <= oLeft || jLeft >= oRight || jBottom <= oTop || jTop >= oBottom);
-                 if (colision) {
-                     System.out.println("Colisión detectada");
-                     return;
-                 }
-                 else if (movimientoX<0 || movimientoY < 0 || jRight > lienzo.getWidth() || Bottom > lienzo.getHeight()) {
-                	System.out.println("Colision paredes");
-                	return;
-                }
+        		int oLeft = obstaculo.x;
+        		int oRight = obstaculo.x + obstaculo.w;
+        		int oTop = obstaculo.y;
+        		int oBottom = obstaculo.y + obstaculo.h;
+			 
+        		boolean colision = !(jRight <= oLeft || jLeft >= oRight || jBottom <= oTop || jTop >= oBottom);
+			 
+        		if (colision) {
+        			jugador.colorNuevo();
+        			System.out.println("Colisión detectada");
+			     return;
+        		}
+        		else if (movimientoX < 0 || movimientoY < 0 || jRight > lienzo.getWidth() || jBottom > lienzo.getHeight()) {
+        			jugador.colorNuevo();
+        			System.out.println("Colision paredes");
+        			return;
+        		}
              }
              jugador.move(dx, dy);
              repaint();
@@ -118,35 +164,55 @@ public class Teclado extends JFrame implements KeyListener {
             jugador.reiniciar();
         }
     }
+	    	
+    
 
     @Override
     public void keyPressed(KeyEvent e) {
+    	
+    	timer.start();
+    	timer2.start();
+    	
+    	lastPress = e.getKeyCode();
+    	
         int key = e.getKeyCode();
         switch (key) {
             case KeyEvent.VK_A:
-                lienzo.moverJugador(-5, 0);
+            	dx = -5;
+            	dy = 0;
                 break;
             case KeyEvent.VK_D:
-                lienzo.moverJugador(5, 0);
+            	dx = 5;
+            	dy = 0;
                 break;
             case KeyEvent.VK_W:
-                lienzo.moverJugador(0, -5);
+            	dx = 0;
+            	dy = -5;
                 break;
             case KeyEvent.VK_S:
-                lienzo.moverJugador(0, 5);
+            	dx = 0;
+            	dy = 5;
                 break;
             case KeyEvent.VK_R:
-            	lienzo.jugador.reiniciar();
+            	dx = 0;
+            	dy = 0;
+            	jugador.reiniciar();
                 break;
         }
     }
-
+    
+    
+    
     @Override
     public void keyReleased(KeyEvent e) {
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+    
+    public void updated() {
+    	repaint();
     }
     
     class Player {
@@ -166,10 +232,6 @@ public class Teclado extends JFrame implements KeyListener {
             g2.fillRect(x, y, w, h);
         }
 
-        public Rectangle getBounds() {
-            return new Rectangle(x, y, w, h);
-        }
-
         public void move(int dx, int dy) {
             x += dx;
             y += dy;
@@ -179,8 +241,29 @@ public class Teclado extends JFrame implements KeyListener {
         public void reiniciar() {
             x = 0;
             y = 0;
+          
+            jugador.color = color.green;
+            
+            mil = 0;
+            seg = 0;
+
+            timer.stop();
+            timer2.stop();
+           
             repaint();
         }
+        
+    	public Color colorNuevo() {
+    		Random random = new Random();
+    		int colorR = random.nextInt(250);
+    		int colorG = random.nextInt(250);
+    		int colorB = random.nextInt(250);
+    		
+    		color = new Color(colorR,colorG,colorB);
+    		
+    		return color;
+        		
+    	}
     }
 
     class Obstaculo {
@@ -199,4 +282,8 @@ public class Teclado extends JFrame implements KeyListener {
             g2.fillRect(x, y, w, h);
         }
     }
+   
+    
+    
+    
 }
