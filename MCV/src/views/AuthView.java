@@ -443,21 +443,4 @@ public class AuthView {
 		panel.repaint();
 		
 	}
-	
-	public void home() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1400, 700);
-		
-		frame.setVisible(true);
-	
-		frame.setBounds(100, 100, 541, 608);
-		JPanel contentPane = new JPanel();
-		contentPane.setBackground(new Color(176, 224, 230));
-		contentPane.setForeground(new Color(255, 0, 0));
-		contentPane.setFont(etiquetas);
-		contentPane.setBorder(BorderFactory.createTitledBorder(null, "INICIO, PRUEBA DE QUE FUNCIONA :)"));
-		
-		frame.setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-	}
 }
