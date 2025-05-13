@@ -1,13 +1,15 @@
 package main;
-import controllers.HomeController;
+
+import controllers.ProductController;
+import views.AuthView;
 
 public class main {
 
 	public static void main(String[] args) {
-		
-		
-		HomeController aplication = new HomeController();
-		aplication.HomeController();
+		//AuthView application = new AuthView();
+		ProductController application = new ProductController();
+			//application.login();
+			application.products();
+		}
+	
 	}
-
-}

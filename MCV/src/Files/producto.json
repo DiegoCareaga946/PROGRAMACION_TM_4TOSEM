@@ -1,0 +1,16 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Laptop HP",
+      "precio": 780.50,
+      "stock": 15
+    },
+    {
+      "id": 2,
+      "nombre": "Mouse Logitech",
+      "precio": 25.99,
+      "stock": 50
+    }
+  ]
+}

@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import controllers.HomeController;
 import views.AuthView;
 import views.HomeView;
 
@@ -38,8 +39,8 @@ public class AuthModel {
 	            String user = datos[0].trim();
 	            String pass = datos[1].trim();
 	            if (user.equals(u) && pass.equals(p)) {
-	            	AuthView idea = new AuthView();
-	            	idea.register();
+	            	HomeView idea = new HomeView();
+	            	idea.HomeView();
 	                return true;
 	            }
 	        }

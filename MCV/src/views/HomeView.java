@@ -16,20 +16,21 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import controllers.ProductController;
 import models.HomeModel;
 
 public class HomeView{
 	JFrame frame;
 	HomeModel datos;
 	
-	public HomeView() {
+	public void HomeView() {
 		frame  = new JFrame("HOME");
 		frame.setLayout(null);
-		frame.setBounds(400,100, 500, 400);
+		frame.setBounds(400,100, 675, 400);
 		frame.setVisible(true);
 		
 		JPanel widget_1 = new JPanel();
-		widget_1.setBounds(30, 100, 200, 100);
+		widget_1.setBounds(120, 100, 200, 100);
 		widget_1.setBackground(new Color(234, 210, 255));
 		widget_1.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		widget_1.setLayout(null);
@@ -46,7 +47,7 @@ public class HomeView{
 		frame.add(widget_1);
 		
 		JPanel widget_2 = new JPanel();
-		widget_2.setBounds(30, 230, 200, 100);
+		widget_2.setBounds(120, 230, 200, 100);
 		widget_2.setBackground(new Color(255, 222, 210));
 		widget_2.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		widget_2.setLayout(null);
@@ -62,7 +63,7 @@ public class HomeView{
 		frame.add(widget_2);
 		
 		JPanel widget_3 = new JPanel();
-		widget_3.setBounds(250, 100, 200, 100);
+		widget_3.setBounds(340, 100, 200, 100);
 		widget_3.setBackground(new Color(195, 200, 254));
 		widget_3.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		widget_3.setLayout(null);
@@ -82,7 +83,7 @@ public class HomeView{
 		frame.add(widget_3);
 		
 		JPanel widget_4 = new JPanel();
-		widget_4.setBounds(250, 230, 200, 100);
+		widget_4.setBounds(340, 230, 200, 100);
 		widget_4.setBackground(new Color(255, 210, 231));
 		widget_4.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 		widget_4.setLayout(null);
@@ -96,7 +97,6 @@ public class HomeView{
 		widget_4.add(titulo_widget4);
 		
 		frame.add(widget_4);
-		
 		
 		JButton boton1 = new JButton("USUARIOS");
 		boton1.setBounds(20,0,130,50);
@@ -159,7 +159,24 @@ public class HomeView{
 		frame.add(boton3);
 		frame.repaint();
 		frame.revalidate();
+		
+		JButton boton4 = new JButton("PRODUCTOS");
+		boton4.setBounds(465,0,178,50);
+		boton4.setOpaque(true);
+		
+		boton4.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				producto();
+			}
+		});
+		frame.add(boton4);
+		frame.repaint();
+		frame.revalidate();
 	}
+	
+	
 	
 	public void registro() {
 		frame = new JFrame("REGISTRO");
@@ -216,14 +233,11 @@ public class HomeView{
 		frame.setLayout(null);
 		frame.setVisible(true);
 		
-		
 		JLabel titulo = new JLabel("USUARIOS");
 		titulo.setBounds(350, 0, 150, 20);
 		titulo.setOpaque(true);
 		frame.add(titulo);
 
-		
-		
 		JButton regresar = new JButton("REGRESAR");
 		regresar.setBounds(0, 0, 100, 100);
 		regresar.setOpaque(true);
@@ -235,6 +249,11 @@ public class HomeView{
 			}
 		});
 		frame.add(regresar);
+	}
+	
+	public void producto() {
+		ProductController prueba = new ProductController();
+		prueba.products();
 	}
 	
 	
