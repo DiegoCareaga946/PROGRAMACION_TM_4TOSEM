@@ -115,6 +115,7 @@ public class HomeView{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				usuarios();
 			}
 		});
@@ -134,6 +135,7 @@ public class HomeView{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				registro();
 			}
 		});
@@ -153,6 +155,7 @@ public class HomeView{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				configuracion();
 			}
 		});
@@ -168,6 +171,7 @@ public class HomeView{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 				producto();
 			}
 		});
@@ -197,7 +201,9 @@ public class HomeView{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();			
+				frame.dispose();
+				home();
+				
 			}
 		});
 		frame.add(regresar);
@@ -221,40 +227,27 @@ public class HomeView{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();			
+				frame.dispose();
+				home();
 			}
 		});
 		frame.add(regresar);
 	}
 	
 	public void usuarios() {
-		frame = new JFrame("USUARIOS");
-		frame.setBounds(100, 100, 700, 700);
-		frame.setLayout(null);
-		frame.setVisible(true);
-		
-		JLabel titulo = new JLabel("USUARIOS");
-		titulo.setBounds(350, 0, 150, 20);
-		titulo.setOpaque(true);
-		frame.add(titulo);
-
-		JButton regresar = new JButton("REGRESAR");
-		regresar.setBounds(0, 0, 100, 100);
-		regresar.setOpaque(true);
-		regresar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();			
-			}
-		});
-		frame.add(regresar);
+		UserView uv = new UserView();
+		uv.users();
 	}
 	
 	public void producto() {
 		ProductController prueba = new ProductController();
 		prueba.products();
 	}
+	
+	public void home() {
+    	HomeView prueba  = new HomeView();
+    	prueba.HomeView();
+    }
 	
 	
 }

@@ -20,10 +20,7 @@ public class AuthModel {
 	public AuthModel() {
 		
 	}
-	
 	public boolean access(String u, String p) throws IOException {
-		AuthView view = new AuthView();
-	    // ruta relativa a la raíz del proyecto:
 	    Path path = Paths.get("src/Files/users.txt");
 	    if (!Files.exists(path)) {
 	        System.err.println("ERROR: users.txt no encontrado en " + path.toAbsolutePath());
@@ -34,13 +31,13 @@ public class AuthModel {
 	        String linea;
 	        while ((linea = reader.readLine()) != null) {
 	            System.out.println("Leyendo línea: " + linea);
-	            String[] datos = linea.split(",");   // <-- Asegúrate de usar el mismo delimitador
-	            if (datos.length < 2) continue;       // línea mal-formada, la saltamos
+	            String[] datos = linea.split(",");
+	            if (datos.length < 2) continue;
 	            String user = datos[0].trim();
 	            String pass = datos[1].trim();
 	            if (user.equals(u) && pass.equals(p)) {
-	            	HomeView idea = new HomeView();
-	            	idea.HomeView();
+	            	HomeView entrada = new HomeView();
+	            	entrada.HomeView();
 	                return true;
 	            }
 	        }

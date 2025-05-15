@@ -152,15 +152,20 @@ public class ProductView {
         add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            	
-                String name = nameInput.getText();
-                double precio = Double.parseDouble(precioInput.getText());
-               
-                ProductModel pm = new ProductModel();
-                pm.addProduct(name, precio);
-                ventana.dispose();
-                
-                new ProductController().products();
+            	try {
+            		String name = nameInput.getText();
+            		double precio = Double.parseDouble(precioInput.getText());
+            		
+            		ProductModel pm = new ProductModel();
+            		pm.addProduct(name, precio);
+            		ventana.dispose();
+            		
+            		new ProductController().products();
+            		
+            	}
+            	finally{
+            		System.out.println("ESTA MAL");
+            		}
             }
         });
         panel.add(add); 

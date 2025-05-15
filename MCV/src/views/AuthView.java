@@ -142,7 +142,7 @@ public class AuthView {
 					} 
 					 
 					if(user_auth) {
-						
+						frame.dispose();
 						JOptionPane.showMessageDialog(frame, "Bienvenido.");
 						
 					}else {
@@ -158,19 +158,18 @@ public class AuthView {
 		panel.add(btnNewButton);
 
 		
-		ImageIcon imagenIcono1 = new ImageIcon(AuthView.class.getResource("/images/usuario.png")); //Agrega una imagen
+		ImageIcon imagenIcono1 = new ImageIcon(AuthView.class.getResource("/images/usuario.png"));
 		
-		JLabel etiquetaIcono1 = new JLabel(imagenIcono1); //Se adjunta la imagen a una etiqueta para su ajuste
+		JLabel etiquetaIcono1 = new JLabel(imagenIcono1);
 		etiquetaIcono1.setBounds(475, 225, 35, 35);
-		etiquetaIcono1.setIcon(new ImageIcon(imagenIcono1.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH))); //Permite el control del tamaño y reajuste de la imagen
+		etiquetaIcono1.setIcon(new ImageIcon(imagenIcono1.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH)));
 		panel.add(etiquetaIcono1);
 		
-		ImageIcon imagenIcono = new ImageIcon(AuthView.class.getResource("/images/hidden.png")); //Agrega una imagen
+		ImageIcon imagenIcono = new ImageIcon(AuthView.class.getResource("/images/hidden.png")); 
 		
-		JLabel etiquetaIcono = new JLabel(imagenIcono); //Se adjunta la imagen a una etiqueta para su ajuste
+		JLabel etiquetaIcono = new JLabel(imagenIcono); 
 		etiquetaIcono.setBounds(475, 350, 35, 35);
-		etiquetaIcono.setIcon(new ImageIcon(imagenIcono.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH))); //Permite el control del tamaño y reajuste de la imagen
-		panel.add(etiquetaIcono);
+		etiquetaIcono.setIcon(new ImageIcon(imagenIcono.getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH)));
 		
 		JLabel etiqueta4 = new JLabel("Recordarme");
 		etiqueta4.setBounds(510, 430, 125, 40);
@@ -307,9 +306,6 @@ public class AuthView {
 		
 		Object[] data = {"Perú", "México", "Bélgica"};
 		
-		JComboBox comboBox = new JComboBox(data);
-		comboBox.setBounds(116, 221, 109, 22);
-		panel.add(comboBox);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(255, 192, 203));
