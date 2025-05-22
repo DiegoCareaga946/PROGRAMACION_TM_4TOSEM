@@ -15,14 +15,18 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import controllers.UserController;
 import models.User;
 import models.UserModel;
 
 public class UserView {
     private JFrame ventana;
     private ArrayList<User> usuarios;
-    
+
+	JFrame agregarUsuario;
     public void users() {
     	
     	ventana = new JFrame("USUARIOS");
@@ -93,6 +97,61 @@ public class UserView {
             };
             modeloTabla.addRow(fila);
         }
+        JLabel nameTittle = new JLabel("nombre");
+        nameTittle.setBounds(100, 80, 80, 20);
+        JLabel emailTittle = new JLabel("email");
+        emailTittle.setBounds(100, 180, 80, 20);
+        JLabel roleTittle = new JLabel("rol");
+        roleTittle.setBounds(100, 280, 80, 20);
+        
+        JTextField nameInput = new JTextField("");
+        nameInput.setBounds(100, 100, 200, 20);
+        nameInput.setText("");
+        JTextField emailInput = new JTextField("");
+        emailInput.setBounds(100, 200, 200, 20);
+        emailInput.setText("");
+        JTextField roleInput = new JTextField("");
+        roleInput.setBounds(100, 300, 200, 20);
+        roleInput.setText("");
+        
+        JButton guardar = new JButton("GUARDAR");
+        guardar.setBounds(40, 400, 100, 40);
+        guardar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				UserModel um = new UserModel();
+				String name = nameInput.getText();
+				String email = emailInput.getText();
+				String role = roleInput.getText();
+				um.add(name, email, role);
+				agregarUsuario.dispose();
+				
+			}
+		});
+        
+        JButton anadir = new JButton("AÑADIR");
+        anadir.setBounds(400, 25, 200, 40);
+        anadir.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				agregarUsuario = new JFrame();
+				agregarUsuario.setBounds(100, 100, 500, 600);
+				agregarUsuario.setLayout(null);
+				agregarUsuario.setVisible(true);
+				
+				agregarUsuario.add(guardar);
+				agregarUsuario.add(nameTittle);
+				agregarUsuario.add(emailTittle);
+				agregarUsuario.add(roleTittle);
+				agregarUsuario.add(nameInput);
+				agregarUsuario.add(emailInput);
+				agregarUsuario.add(roleInput);				
+			}
+		});
+        panelBase.add(anadir);
         
         JTable tablaUsuarios = new JTable(modeloTabla);
         tablaUsuarios.setFillsViewportHeight(true);
