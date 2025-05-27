@@ -1,5 +1,6 @@
 package controllers;
 
+import models.User;
 import models.UserModel;
 import views.UserView;
 
@@ -14,5 +15,5 @@ public class UserController {
 	        UserModel pm = new UserModel();
 	        pm.get();
 	        view.users();
-	    }
+	 }
 }

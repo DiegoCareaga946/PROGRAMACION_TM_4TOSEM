@@ -1,5 +1,7 @@
 package models;
 
+import javax.swing.JButton;
+
 public class User {
 	Integer id;
 	String nombre;

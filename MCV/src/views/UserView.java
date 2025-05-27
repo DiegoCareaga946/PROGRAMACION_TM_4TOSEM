@@ -18,6 +18,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import javax.swing.*;
+import javax.swing.table.*;
+import java.awt.*;
+import java.awt.event.*;
+
 import controllers.UserController;
 import models.User;
 import models.UserModel;
@@ -26,7 +31,15 @@ public class UserView {
     private JFrame ventana;
     private ArrayList<User> usuarios;
 
+    JLabel nameTittle;
+    JLabel emailTittle;
+    JLabel roleTittle;
+    JTextField nameInput;
+    JTextField emailInput;
+    JTextField roleInput;
+    JButton guardar;
 	JFrame agregarUsuario;
+	int usuarioEditandoId = -1;
     public void users() {
     	
     	ventana = new JFrame("USUARIOS");
@@ -82,54 +95,66 @@ public class UserView {
         });
         panelBase.add(reiniciar);
         
-        String[] columnas = {"ID", "Name", "Email", "Role", "Phone"};
+        String[] columnas = {"ID", "Name", "Email", "Role", "Phone", "Editar"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         
         usuarios = obtenerUsuarios();
         
-        for(User usuario : usuarios) {
+        for (User usuario : usuarios) {
             Object[] fila = {
                 usuario.getId(),
                 usuario.getNombre(),
                 usuario.getEmail(),
                 usuario.getRole(),
-                usuario.getPhone()
+                usuario.getPhone(),
+                "Editar"
             };
             modeloTabla.addRow(fila);
         }
-        JLabel nameTittle = new JLabel("nombre");
+        
+        JTable tablaUsuarios = new JTable(modeloTabla);
+        tablaUsuarios.getColumn("Editar").setCellRenderer(new ButtonRenderer());
+        tablaUsuarios.getColumn("Editar").setCellEditor(new ButtonEditor(new JCheckBox(), tablaUsuarios));
+        
+        nameTittle = new JLabel("nombre");
         nameTittle.setBounds(100, 80, 80, 20);
-        JLabel emailTittle = new JLabel("email");
+        emailTittle = new JLabel("email");
         emailTittle.setBounds(100, 180, 80, 20);
-        JLabel roleTittle = new JLabel("rol");
+        
+        roleTittle = new JLabel("rol");
         roleTittle.setBounds(100, 280, 80, 20);
         
-        JTextField nameInput = new JTextField("");
+        nameInput = new JTextField("");
         nameInput.setBounds(100, 100, 200, 20);
         nameInput.setText("");
-        JTextField emailInput = new JTextField("");
+        
+        emailInput = new JTextField("");
         emailInput.setBounds(100, 200, 200, 20);
         emailInput.setText("");
-        JTextField roleInput = new JTextField("");
+        
+        roleInput = new JTextField("");
         roleInput.setBounds(100, 300, 200, 20);
         roleInput.setText("");
         
-        JButton guardar = new JButton("GUARDAR");
+        guardar = new JButton("GUARDAR");
         guardar.setBounds(40, 400, 100, 40);
         guardar.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				UserModel um = new UserModel();
-				String name = nameInput.getText();
-				String email = emailInput.getText();
-				String role = roleInput.getText();
-				um.add(name, email, role);
-				agregarUsuario.dispose();
-				
-			}
-		});
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                UserModel um = new UserModel();
+                String name = nameInput.getText();
+                String email = emailInput.getText();
+                String role = roleInput.getText();
+
+                if (usuarioEditandoId == -1) {
+                    um.add(name, email, role);
+                } else {
+                    um.update(usuarioEditandoId, name, email, role);
+                }
+                agregarUsuario.dispose();
+            }
+        });
+
         
         JButton anadir = new JButton("AÑADIR");
         anadir.setBounds(400, 25, 200, 40);
@@ -153,7 +178,6 @@ public class UserView {
 		});
         panelBase.add(anadir);
         
-        JTable tablaUsuarios = new JTable(modeloTabla);
         tablaUsuarios.setFillsViewportHeight(true);
         
         JScrollPane scrollPane = new JScrollPane(tablaUsuarios);
@@ -177,5 +201,85 @@ public class UserView {
     public void home() {
        HomeView hm = new HomeView();
        hm.HomeView();
+    }
+
+
+    class ButtonRenderer extends JButton implements TableCellRenderer {
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+        public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "Editar" : value.toString());
+            return this;
+        }
+    }
+
+    class ButtonEditor extends DefaultCellEditor {
+        protected JButton button;
+        private String label;
+        private boolean clicked;
+        private int row;
+        private JTable table;
+
+        public ButtonEditor(JCheckBox checkBox, JTable table) {
+            super(checkBox);
+            this.table = table;
+            button = new JButton();
+            button.setOpaque(true);
+            
+            button.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                    int id = (int) table.getValueAt(row, 0);
+
+                	usuarioEditandoId = id;
+                    
+                    String nombre = (String) table.getValueAt(row, 1);
+                    String email = (String) table.getValueAt(row, 2);
+                    String rol = (String) table.getValueAt(row, 3);
+
+                    agregarUsuario = new JFrame();
+    				agregarUsuario.setBounds(100, 100, 500, 600);
+    				agregarUsuario.setLayout(null);
+    				agregarUsuario.setVisible(true);
+    				
+    				agregarUsuario.add(guardar);
+    				agregarUsuario.add(nameTittle);
+    				agregarUsuario.add(emailTittle);
+    				agregarUsuario.add(roleTittle);
+    				
+    				agregarUsuario.add(nameInput);
+    				nameInput.setText(nombre);
+    				agregarUsuario.add(emailInput);
+    				emailInput.setText(email);
+    				agregarUsuario.add(roleInput);
+    				roleInput.setText(rol);
+    				
+    				
+                }
+            });
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) {
+            this.row = row;
+            button.setText((value == null) ? "Editar" : value.toString());
+            clicked = true;
+            return button;
+        }
+
+        public Object getCellEditorValue() {
+            return new String("Editar");
+        }
+
+        public boolean stopCellEditing() {
+            clicked = false;
+            return super.stopCellEditing();
+        }
+
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
     }
 }
