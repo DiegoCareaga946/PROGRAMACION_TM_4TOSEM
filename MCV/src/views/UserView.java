@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -40,6 +39,7 @@ public class UserView {
     JButton guardar;
 	JFrame agregarUsuario;
 	int usuarioEditandoId = -1;
+	
     public void users() {
     	
     	ventana = new JFrame("USUARIOS");
@@ -95,7 +95,7 @@ public class UserView {
         });
         panelBase.add(reiniciar);
         
-        String[] columnas = {"ID", "Name", "Email", "Role", "Phone", "Editar"};
+        String[] columnas = {"ID", "Name", "Email", "Role", "Phone", "Editar", "Eliminar"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         
         usuarios = obtenerUsuarios();
@@ -107,7 +107,8 @@ public class UserView {
                 usuario.getEmail(),
                 usuario.getRole(),
                 usuario.getPhone(),
-                "Editar"
+                "Editar",
+                "Eliminar"
             };
             modeloTabla.addRow(fila);
         }
@@ -115,6 +116,9 @@ public class UserView {
         JTable tablaUsuarios = new JTable(modeloTabla);
         tablaUsuarios.getColumn("Editar").setCellRenderer(new ButtonRenderer());
         tablaUsuarios.getColumn("Editar").setCellEditor(new ButtonEditor(new JCheckBox(), tablaUsuarios));
+        
+        tablaUsuarios.getColumn("Eliminar").setCellRenderer(new ButtonRenderer());
+        tablaUsuarios.getColumn("Eliminar").setCellEditor(new ButtonEliminar(new JCheckBox(), tablaUsuarios));
         
         nameTittle = new JLabel("nombre");
         nameTittle.setBounds(100, 80, 80, 20);
@@ -162,6 +166,8 @@ public class UserView {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				usuarioEditandoId = -1;
+				
 				agregarUsuario = new JFrame();
 				agregarUsuario.setBounds(100, 100, 500, 600);
 				agregarUsuario.setLayout(null);
@@ -211,6 +217,7 @@ public class UserView {
         public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
             setText((value == null) ? "Editar" : value.toString());
+            setText((value == null) ? "Eliminar" : value.toString());
             return this;
         }
     }
@@ -225,12 +232,14 @@ public class UserView {
         public ButtonEditor(JCheckBox checkBox, JTable table) {
             super(checkBox);
             this.table = table;
+            
             button = new JButton();
             button.setOpaque(true);
             
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     fireEditingStopped();
+                    
                     int id = (int) table.getValueAt(row, 0);
 
                 	usuarioEditandoId = id;
@@ -260,7 +269,7 @@ public class UserView {
                 }
             });
         }
-
+        
         public Component getTableCellEditorComponent(JTable table, Object value,
             boolean isSelected, int row, int column) {
             this.row = row;
@@ -268,7 +277,6 @@ public class UserView {
             clicked = true;
             return button;
         }
-
         public Object getCellEditorValue() {
             return new String("Editar");
         }
@@ -278,6 +286,71 @@ public class UserView {
             return super.stopCellEditing();
         }
 
+        protected void fireEditingStopped() {
+            super.fireEditingStopped();
+        }
+    }
+    
+    
+    class ButtonEliminar extends DefaultCellEditor {
+        protected JButton eliminar;
+        private String label;
+        private boolean clicked;
+        private int row;
+        private JTable table;
+
+        public ButtonEliminar(JCheckBox checkBox, JTable table) {
+            super(checkBox);
+            this.table = table;
+            
+            eliminar = new JButton();
+            eliminar.setOpaque(true);
+            
+            eliminar = new JButton();
+            eliminar.setOpaque(true);
+            
+            eliminar.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    fireEditingStopped();
+                    
+                    int id = (int) table.getValueAt(row, 0);
+                	usuarioEditandoId = id;
+                	
+                	int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas eliminar el usuario?", "confirmacion", JOptionPane.YES_NO_OPTION);
+                	
+                	if(respuesta == 0) {
+                		UserModel um = new UserModel();
+                		um.delete(id);
+                	}
+                	else {
+                		JOptionPane.showMessageDialog(null, "No se elimino al usuario");
+                	}
+                	
+                }
+            });
+        }
+        
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value,
+            boolean isSelected, int row, int column) {
+            this.row = row;
+            eliminar.setText((value == null) ? "Eliminar" : value.toString());
+            clicked = true;
+            return eliminar;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return "Eliminar";
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            clicked = false;
+            return super.stopCellEditing();
+        }
+
+        @Override
         protected void fireEditingStopped() {
             super.fireEditingStopped();
         }
